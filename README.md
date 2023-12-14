@@ -1,2 +1,2 @@
-# surgeforme
-自用surge规则
+# SurgeForMe
+自用surge配置and规则
