@@ -107,7 +107,7 @@ FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客�
 
 # 策略组参数锚点
 # 锚点 - 手动选择参数
-Select: &Select {type: select, url: 'http://connectivitycheck.platform.hicloud.com/generate_204', disable-udp: false, hidden: true, include-all: true}
+Select: &Select {type: select, url: 'http://connectivitycheck.platform.hicloud.com/generate_204', disable-udp: false, hidden: false, include-all: true}
 # 锚点 - 规则参数 [每小时更新一次订阅规则，更新规则时使用直连策略]
 RuleSet_classical: &RuleSet_classical {type: http, behavior: classical, interval: 43200, format: text, proxy: DIRECT}
 RuleSet_domain: &RuleSet_domain {type: http, behavior: domain, interval: 43200, format: text, proxy: DIRECT}
@@ -132,6 +132,8 @@ proxy-groups:
   - {name: 🇫🇷 法国节点, <<: *Select, filter: *FilterFR}
   - {name: 🇩🇪 德国节点, <<: *Select, filter: *FilterDE}
   - {name: 🇹🇼 台湾节点, <<: *Select, filter: *FilterTW}
+  - {name: AllIn, <<: *Select, filter: *FilterAll}
+
 
 # 订阅规则
 rule-providers:
