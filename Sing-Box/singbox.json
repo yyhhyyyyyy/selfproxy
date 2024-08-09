@@ -5,11 +5,16 @@
     "timestamp": true
   },
   "dns": {
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
     "servers": [
       {
         "tag": "tx",
         "address": "https://120.53.53.53/dns-query",
-        "detour": "direct-out"
+        "detour": "direct"
       },
       {
         "tag": "block-dns",
@@ -18,7 +23,7 @@
       {
         "tag": "google",
         "address": "https://dns.google/dns-query",
-        "address_resolver": "default-dns",
+        "address_resolver": "tx",
         "address_strategy": "ipv4_only",
         "strategy": "ipv4_only",
         "client_subnet": "1.0.1.0"
@@ -56,7 +61,7 @@
         "rewrite_ttl": 1
       },
       {
-        "rule_set": "cnsite",
+        "rule_set": "geosite-cn",
         "server": "tx"
       }, 
       {
@@ -521,7 +526,7 @@
       },
       {
         "clash_mode": "global",
-        "outbound": "Global"
+        "outbound": "GLOBAL"
       },
       {
         "rule_set": [
@@ -584,91 +589,91 @@
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geoip/apple.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "geosite-apple",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/apple.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "geoip-bilibili",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geoip/bilibili.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "geosite-bilibili",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/bilibili.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "geoip-netflix",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/netflix.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "geosite-netflix",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/netflix.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "openai",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "geoip-telegram",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/telegram.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "geosite-telegram",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/telegram.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "youtube",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/youtube.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "geolocation-!cn",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-!cn.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cn.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       },
       {
         "tag": "geosite-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/cn.srs",
-        "download_detour": "auto"
+        "download_detour": "proxy"
       }
     ],
     "auto_detect_interface": true,
