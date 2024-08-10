@@ -57,10 +57,7 @@
       "tag": "tun",
       "type": "tun",
       "interface_name": "singbox",
-      "address": [
-        "172.18.0.1/30",
-        "fdfe:dcba:9876::1/126"
-      ],
+      "inet4_address": "172.19.0.1/30",
       "stack": "mixed",
       "auto_route": true,
       "platform": {
