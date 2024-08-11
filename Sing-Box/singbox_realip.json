@@ -18,10 +18,6 @@
         "address_strategy": "ipv4_only",
         "strategy": "ipv4_only",
         "client_subnet": "1.0.1.0"
-      },
-      {
-        "tag": "block-dns",
-        "address": "rcode://name_error"
       }
     ],
     "rules": [
@@ -42,8 +38,19 @@
         "server": "tx"
       }, 
       {
-        "rule_set": "geolocation-!cn", 
-        "server": "google"
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geolocation-!cn",
+            "invert": true
+          },
+          {
+            "rule_set": "geoip-cn"
+          }
+        ],
+        "server": "google",
+        "client_subnet": "114.114.114.114/24"
       }
     ],
     "strategy": "ipv4_only",
@@ -58,8 +65,11 @@
       "type": "tun",
       "interface_name": "singbox",
       "inet4_address": "172.19.0.1/30",
+      "mtu": 9000,
       "stack": "mixed",
       "auto_route": true,
+      "sniff": true,
+      "strict_route": true,
       "platform": {
         "http_proxy": {
           "enabled": true,
@@ -67,16 +77,17 @@
           "server_port": 7890
         }
       }
-    },
-    {
-      "tag": "mixed",
-      "type": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 7890,
-      "sniff": true
     }
   ],
   "outbounds": [
+    {
+      "tag": "direct",
+      "type": "direct"
+    },
+    {
+      "tag": "dns-out",
+      "type": "dns"
+    },
     {
       "tag": "proxy",
       "type": "selector",
@@ -594,14 +605,6 @@
         "all-auto"
       ],
       "default": "direct"
-    },
-    {
-      "tag": "direct",
-      "type": "direct"
-    },
-    {
-      "tag": "dns-out",
-      "type": "dns"
     }
   ],
   "route": {
@@ -621,6 +624,12 @@
       {
         "clash_mode": "global",
         "outbound": "GLOBAL"
+      },
+      {
+        "domain_suffix": [
+          "oaifree.com"
+        ],
+        "outbound": "direct-out"
       },
       {
         "rule_set": [
@@ -773,7 +782,7 @@
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
       "external_ui": "ui", 
-      "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip", 
+      "external_ui_download_url": "https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip", 
       "external_ui_download_detour": "proxy",
       "default_mode": "rule"
     }
