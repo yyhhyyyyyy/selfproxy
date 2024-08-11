@@ -1,4 +1,6 @@
-// https://raw.githubusercontent.com/xream/scripts/main/surge/modules/sub-store-scripts/sing-box/template.js#type=组合订阅&name=机场&outbound=🕳ℹ️all|all-auto🕳ℹ️hk|hk-auto🏷ℹ️港|hk|hongkong|kong kong|🇭🇰🕳ℹ️tw|tw-auto🏷ℹ️台|tw|taiwan|🇹🇼🕳ℹ️jp|jp-auto🏷ℹ️日本|jp|japan|🇯🇵🕳ℹ️sg|sg-auto🏷ℹ️^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)🕳ℹ️us|us-auto🏷ℹ️美|us|unitedstates|united states|🇺🇸
+// https://raw.githubusercontent.com/yyhhyyyyyy/selfproxy/main/Sing-Box/tp.js#name=klm&outbound=🕳ℹ️all|all-auto🕳ℹ️hk|hk-auto🏷ℹ️港|hk|hongkong|kong kong|🇭🇰🕳ℹ️tw|tw-auto🏷ℹ️台|tw|taiwan|🇹🇼🕳ℹ️jp|jp-auto🏷ℹ️日本|jp|japan|🇯🇵🕳ℹ️sg|sg-auto🏷ℹ️^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)🕳ℹ️us|us-auto🏷ℹ️美|us|unitedstates|united states|🇺🇸🕳ℹ️de|de-auto🏷ℹ️德|de|germany|🇩🇪🕳ℹ️gb|gb-auto🏷ℹ️英|uk|unitedkingdom|united kingdom|🇬🇧🕳ℹ️kr|kr-auto🏷ℹ️韩|kr|korea|southkorea|🇰🇷🕳ℹ️fr|fr-auto🏷ℹ️法|fr|france|🇫🇷🕳ℹ️nl|nl-auto🏷ℹ️荷|nl|netherlands|🇳🇱🕳ℹ️in|in-auto🏷ℹ️印|india|🇮🇳🕳ℹ️tr|tr-auto🏷ℹ️(🇹🇷)|(土)|(Türkiye)|turkey
+
+// 脚本来自：https://raw.githubusercontent.com/xream/scripts/main/surge/modules/sub-store-scripts/sing-box/template.js
 
 // 示例说明
 // 读取 名称为 "机场" 的 组合订阅 中的节点(单订阅不需要设置 type 参数)
