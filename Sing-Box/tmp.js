@@ -54,9 +54,8 @@ config.outbounds.map(outbound => {
       if (!Array.isArray(outbound.outbounds)) {
         outbound.outbounds = []
       }
-      const tags = getTags(proxies, tagRegex);
-      // 添加额外的检查
-      tags = tags.filter(tag => outbound.outbounds.includes(tag));
+      let tags = getTags(proxies, tagRegex);  // 改为 let 而不是 const
+      tags = tags.filter(tag => outbound.outbounds.includes(tag));  // 进行过滤操作
       log(`🕳 ${outbound.tag} 匹配 ${outboundRegex}, 插入 ${tags.length} 个 🏷 匹配 ${tagRegex} 的节点`);
       outbound.outbounds.push(...tags);
     }
