@@ -629,7 +629,7 @@
         "domain_suffix": [
           "oaifree.com"
         ],
-        "outbound": "direct-out"
+        "outbound": "direct"
       },
       {
         "rule_set": [
