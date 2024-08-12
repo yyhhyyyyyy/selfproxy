@@ -13,11 +13,7 @@
       },
       {
         "tag": "google",
-        "address": "https://dns.google/dns-query",
-        "address_resolver": "tx",
-        "address_strategy": "ipv4_only",
-        "strategy": "ipv4_only",
-        "client_subnet": "1.0.1.0"
+        "address": "tls://8.8.8.8"
       }
     ],
     "rules": [
@@ -54,9 +50,6 @@
       }
     ],
     "strategy": "ipv4_only",
-    "disable_cache": false,
-    "disable_expire": false,
-    "independent_cache": false,
     "final": "google"
   },
   "inbounds": [
@@ -610,7 +603,16 @@
   "route": {
     "rules": [
       {
-        "protocol": "dns",
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
         "outbound": "dns-out"
       },
       {
@@ -777,7 +779,8 @@
   },
   "experimental": {
     "cache_file": {
-      "enabled": true
+      "enabled": true,
+      "store_rdrc": true
     },
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
