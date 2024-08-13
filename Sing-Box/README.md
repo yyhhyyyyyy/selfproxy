@@ -7,6 +7,8 @@
 
 [xishang0128](https://github.com/xishang0128/sub-store-template/blob/main/sing-box-resolve.json)
 
+[官方文档](https://sing-box.sagernet.org/zh)
+
 ### 1.singbox.json
 
 这份是使用的fake-ip的
