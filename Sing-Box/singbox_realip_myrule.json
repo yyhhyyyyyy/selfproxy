@@ -806,7 +806,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/myself/my_direct.srs",
-        "download_detour": "direct"
+        "download_detour": "proxy"
       },
       {
         "tag": "reject_non_ip_no_drop",
