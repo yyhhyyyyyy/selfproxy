@@ -9,6 +9,12 @@
 
 [官方文档](https://sing-box.sagernet.org/zh)
 
+
+维护了一份规则仓库，欢迎使用
+
+**[rule_set](https://github.com/yyhhyyyyyy/sing-box-ruleset)**
+
+
 ### 1.singbox.json
 
 这份是使用的fake-ip的
