@@ -279,7 +279,7 @@
         "all",
         "all-auto"
       ],
-      "default": "us-auto"
+      "default": "us"
     },
     {
       "tag": "final",
