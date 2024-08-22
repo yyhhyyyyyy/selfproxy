@@ -1,0 +1,890 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "warn",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns_proxy",
+        "address": "https://1.0.0.1/dns-query",
+        "address_resolver": "dns_resolver",
+        "strategy": "ipv4_only",
+        "detour": "proxy"
+      },
+      {
+        "tag": "dns_direct",
+        "address": "https://120.53.53.53/dns-query",
+        "address_resolver": "dns_resolver",
+        "strategy": "ipv4_only",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns_resolver",
+        "address": "119.29.29.29",
+        "detour": "direct"
+      }
+    ],
+    "rules": [
+      {
+        "outbound": "any",
+        "server": "dns_resolver"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "dns_direct"
+      },
+      {
+        "clash_mode": "global",
+        "server": "dns_proxy"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "server": "dns_direct"
+      }, 
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geolocation-!cn",
+            "invert": true
+          },
+          {
+            "rule_set": "geoip-cn"
+          }
+        ],
+        "server": "dns_proxy",
+        "client_subnet": "114.114.114.114/24"
+      }
+    ],
+    "strategy": "ipv4_only",
+    "final": "dns_proxy"
+  },
+  "inbounds": [
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "interface_name": "singbox",
+      "address": [
+        "172.19.0.1/30"
+      ],
+      "mtu": 9000,
+      "stack": "system",
+      "auto_route": true,
+      "strict_route": true,
+      "sniff": true,
+      "sniff_override_destination": false,
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 7890
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "direct-out",
+      "type": "direct"
+    },
+    {
+      "tag": "dns-out",
+      "type": "dns"
+    },
+    {
+      "tag": "block",
+      "type": "block"
+    },
+    {
+      "tag": "proxy",
+      "type": "selector",
+      "outbounds": [
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "de",
+        "gb",
+        "kr",
+        "fr",
+        "nl",
+        "in",
+        "tr",
+        "all",
+        "all-auto",
+        "direct-out"
+      ],
+      "default": "all-auto"
+    },
+    {
+      "tag": "apple",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct-out",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "de",
+        "gb",
+        "kr",
+        "fr",
+        "nl",
+        "in",
+        "tr",
+        "all",
+        "all-auto"
+      ],
+      "default": "direct-out"
+    },
+    {
+      "tag": "telegram",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct-out",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "de",
+        "gb",
+        "kr",
+        "fr",
+        "nl",
+        "in",
+        "tr",
+        "all",
+        "all-auto"
+      ],
+      "default": "proxy"
+    },
+    {
+      "tag": "bilibili",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct-out",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "de",
+        "gb",
+        "kr",
+        "fr",
+        "nl",
+        "in",
+        "tr",
+        "all",
+        "all-auto"
+      ],
+      "default": "direct-out"
+    },
+    {
+      "tag": "microsoft",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct-out",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "de",
+        "gb",
+        "kr",
+        "fr",
+        "nl",
+        "in",
+        "tr",
+        "all",
+        "all-auto"
+      ],
+      "default": "proxy"
+    },
+    {
+      "tag": "neteasemusic",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct-out",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "de",
+        "gb",
+        "kr",
+        "fr",
+        "nl",
+        "in",
+        "tr",
+        "all",
+        "all-auto"
+      ],
+      "default": "direct-out"
+    },
+    {
+      "tag": "stream",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct-out",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "de",
+        "gb",
+        "kr",
+        "fr",
+        "nl",
+        "in",
+        "tr",
+        "all",
+        "all-auto"
+      ],
+      "default": "proxy"
+    },
+    {
+      "tag": "openai",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct-out",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "de",
+        "gb",
+        "kr",
+        "fr",
+        "nl",
+        "in",
+        "tr",
+        "all",
+        "all-auto"
+      ],
+      "default": "us-auto"
+    },
+    {
+      "tag": "final",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct-out",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "de",
+        "gb",
+        "kr",
+        "fr",
+        "nl",
+        "in",
+        "tr",
+        "all",
+        "all-auto"
+      ],
+      "default": "proxy"
+    },
+    {
+      "tag": "hk",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇭🇰|HK|hk|香港|港|HongKong"]}
+      ]
+    },
+    {
+      "tag": "tw",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"]}
+      ]
+    },
+    {
+      "tag": "jp",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇯🇵|JP|jp|日本|日|Japan"]}
+      ]
+    },
+    {
+      "tag": "sg",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇸🇬|SG|sg|新加坡|狮|Singapore"]}
+      ]
+    },
+    {
+      "tag": "us",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇺🇸|US|us|美国|美|United States"]}
+      ]
+    },
+    {
+      "tag": "de",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇩🇪|DE|de|德国|德|Germany"]}
+      ]
+    },
+    {
+      "tag": "gb",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇬🇧|GB|gb|英国|英|United Kingdom"]}
+      ]
+    },
+    {
+      "tag": "kr",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇰🇷|KR|kr|韩国|韩|South Korea"]}
+      ]
+    },
+    {
+      "tag": "fr",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇫🇷|FR|fr|法国|法|France"]}
+      ]
+    },
+    {
+      "tag": "nl",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇳🇱|NL|nl|荷兰|荷|Netherlands"]}
+      ]
+    },
+    {
+      "tag": "in",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇮🇳|IN|in|印度|印|India"]}
+      ]
+    },
+    {
+      "tag": "tr",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"include","keywords":["🇹🇷|TR|tr|土耳其|土|Turkey"]}
+      ]
+    },
+    {
+      "tag": "all",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效"]}
+      ]
+    },
+    {
+      "tag": "all-auto",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效"]}
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "GLOBAL",
+      "type": "selector",
+      "outbounds": [
+        "direct-out",
+        "proxy",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "de",
+        "gb",
+        "kr",
+        "fr",
+        "nl",
+        "in",
+        "tr",
+        "all",
+        "all-auto"
+      ],
+      "default": "direct-out"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
+        "outbound": "dns-out"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "direct-out"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "GLOBAL"
+      },
+      {
+        "rule_set": [
+          "reject_non_ip",
+          "reject_non_ip_no_drop",
+          "reject_domainset"
+        ],
+        "outbound": "block"
+      },
+      {
+        "rule_set": [
+          "reject_ip"
+        ],
+        "outbound": "block"
+      },
+      {
+        "rule_set": [
+          "my_direct"
+        ],
+        "outbound": "direct-out"
+      },
+      {
+        "rule_set": [
+          "cdn_domainset",
+          "cdn_non_ip"
+        ],
+        "outbound": "proxy"
+      },
+      {
+        "rule_set": [
+          "stream_non_ip"
+        ],
+        "outbound": "stream"
+      },
+      {
+        "rule_set": [
+          "ai_non_ip"
+        ],
+        "outbound": "openai"
+      },
+      {
+        "rule_set": [
+          "telegram_non_ip"
+        ],
+        "outbound": "telegram"
+      },
+      {
+        "rule_set": [
+          "apple_cdn",
+          "apple_cn_non_ip"
+        ],
+        "outbound": "direct-out"
+      },
+      {
+        "rule_set": [
+          "microsoft_cdn_non_ip"
+        ],
+        "outbound": "direct-out"
+      },
+      {
+        "rule_set": [
+          "download_domainset",
+          "download_non_ip"
+        ],
+        "outbound": "proxy"
+      },
+      {
+        "rule_set": [
+          "apple_services"
+        ],
+        "outbound": "apple"
+      },
+      {
+        "rule_set": [
+          "microsoft_non_ip"
+        ],
+        "outbound": "microsoft"
+      },
+      {
+        "rule_set": [
+          "global_non_ip"
+        ],
+        "outbound": "proxy"
+      },
+      {
+        "rule_set": [
+          "neteasemusic_non_ip"
+        ],
+        "outbound": "neteasemusic"
+      },
+      {
+        "rule_set": [
+          "global_non_ip"
+        ],
+        "outbound": "proxy"
+      },
+      {
+        "rule_set": [
+          "domestic_non_ip",
+          "lan_non_ip",
+          "direct_non_ip"
+        ],
+        "outbound": "direct-out"
+      },
+      {
+        "rule_set": [
+          "telegram_ip"
+        ],
+        "outbound": "telegram"
+      },
+      {
+        "rule_set": [
+          "stream_ip"
+        ],
+        "outbound": "stream"
+      },
+      {
+        "rule_set": [
+          "neteasemusic_ip"
+        ],
+        "outbound": "neteasemusic"
+      },
+      {
+        "rule_set": [
+          "lan_ip",
+          "domestic_ip",
+          "china_ip"
+        ],
+        "outbound": "direct-out"
+      },
+      {
+        "rule_set": [
+          "geosite-cn",
+          "geoip-cn"
+        ],
+        "outbound": "direct-out"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "my_direct",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/myself/my_direct.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "reject_non_ip_no_drop",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/reject-no-drop.srs",
+        "download_detour": "proxy"
+      },
+      {
+      "tag": "reject_non_ip_drop",
+      "type": "remote",
+      "format": "binary",
+      "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/reject-drop.srs",
+      "download_detour": "proxy"
+      },
+      {
+        "tag": "reject_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/reject.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "reject_domainset",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/domainset/reject.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "reject_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/ip/reject.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "cdn_domainset",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/domainset/cdn.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "cdn_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/cdn.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "stream_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/stream.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "stream_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/ip/stream.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "ai_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/ai.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "telegram_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/telegram.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "telegram_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/ip/telegram.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "apple_cdn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/domainset/apple_cdn.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "apple_services",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/apple_services.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "apple_cn_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/apple_cn.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "microsoft_cdn_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/microsoft_cdn.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "microsoft_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/microsoft.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "neteasemusic_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/neteasemusic.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "neteasemusic_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/ip/neteasemusic.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "download_domainset",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/domainset/download.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "download_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/download.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "lan_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/lan.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "lan_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/ip/lan.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "domestic_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/domestic.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "direct_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/direct.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "global_non_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/non_ip/global.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "domestic_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/ip/domestic.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "china_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/yyhhyyyyyy/sing-box-ruleset/raw/main/ip/china_ip.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "geoip-bilibili",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geoip/bilibili.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "geosite-bilibili",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/bilibili.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "geolocation-!cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "geoip-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cn.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "geosite-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/cn.srs",
+        "download_detour": "proxy"
+      }
+    ],
+    "auto_detect_interface": true,
+    "final": "final"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "store_rdrc": true
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui", 
+      "external_ui_download_url": "https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip", 
+      "external_ui_download_detour": "proxy",
+      "default_mode": "rule"
+    }
+  }
+}
