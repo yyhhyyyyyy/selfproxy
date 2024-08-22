@@ -311,7 +311,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇭🇰|HK|hk|香港|港|HongKong"]}
+        {"action":"include","keywords":["🇭🇰|HK|hk|香港|港|HongKong"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -321,7 +322,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"]}
+        {"action":"include","keywords":["🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -331,7 +333,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇯🇵|JP|jp|日本|日|Japan"]}
+        {"action":"include","keywords":["🇯🇵|JP|jp|日本|日|Japan"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -341,7 +344,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇸🇬|SG|sg|新加坡|狮|Singapore"]}
+        {"action":"include","keywords":["🇸🇬|SG|sg|新加坡|狮|Singapore"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -351,7 +355,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇺🇸|US|us|美国|美|United States"]}
+        {"action":"include","keywords":["🇺🇸|US|us|美国|美|United States"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -361,7 +366,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇩🇪|DE|de|德国|德|Germany"]}
+        {"action":"include","keywords":["🇩🇪|DE|de|德国|德|Germany"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -371,7 +377,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇬🇧|GB|gb|英国|英|United Kingdom"]}
+        {"action":"include","keywords":["🇬🇧|GB|gb|英国|英|United Kingdom"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -381,7 +388,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇰🇷|KR|kr|韩国|韩|South Korea"]}
+        {"action":"include","keywords":["🇰🇷|KR|kr|韩国|韩|South Korea"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -391,7 +399,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇫🇷|FR|fr|法国|法|France"]}
+        {"action":"include","keywords":["🇫🇷|FR|fr|法国|法|France"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -401,7 +410,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇳🇱|NL|nl|荷兰|荷|Netherlands"]}
+        {"action":"include","keywords":["🇳🇱|NL|nl|荷兰|荷|Netherlands"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -411,7 +421,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇮🇳|IN|in|印度|印|India"]}
+        {"action":"include","keywords":["🇮🇳|IN|in|印度|印|India"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -421,7 +432,8 @@
         "{all}"
       ],
       "filter": [
-        {"action":"include","keywords":["🇹🇷|TR|tr|土耳其|土|Turkey"]}
+        {"action":"include","keywords":["🇹🇷|TR|tr|土耳其|土|Turkey"]},
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -441,7 +453,7 @@
         "{all}"
       ],
       "filter": [
-        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效"]}
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ]
     },
     {
@@ -451,7 +463,7 @@
         "{all}"
       ],
       "filter": [
-        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效"]}
+        {"action":"exclude","keywords":["网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点"]}
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
