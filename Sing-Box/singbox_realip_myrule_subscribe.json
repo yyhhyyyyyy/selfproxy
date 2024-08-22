@@ -114,8 +114,6 @@
         "nl",
         "in",
         "tr",
-        "all",
-        "all-auto",
         "direct-out"
       ],
       "default": "all-auto"
