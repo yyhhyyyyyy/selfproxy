@@ -18,12 +18,12 @@
         "address": "https://120.53.53.53/dns-query",
         "address_resolver": "dns_resolver",
         "strategy": "ipv4_only",
-        "detour": "direct"
+        "detour": "direct-out"
       },
       {
         "tag": "dns_resolver",
         "address": "119.29.29.29",
-        "detour": "direct"
+        "detour": "direct-out"
       }
     ],
     "rules": [
@@ -114,6 +114,8 @@
         "nl",
         "in",
         "tr",
+        "others",
+        "all-auto",
         "direct-out"
       ],
       "default": "all-auto"
@@ -420,6 +422,16 @@
       ],
       "filter": [
         {"action":"include","keywords":["🇹🇷|TR|tr|土耳其|土|Turkey"]}
+      ]
+    },
+    {
+      "tag": "others",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {"action":"exclude","keywords":["🇭🇰|HK|hk|香港|港|HongKong", "🇹🇼|TW|tw|台湾|臺灣|台|Taiwan", "🇯🇵|JP|jp|日本|日|Japan", "🇸🇬|SG|sg|新加坡|狮|Singapore", "🇺🇸|US|us|美国|美|United States", "🇩🇪|DE|de|德国|德|Germany", "🇬🇧|GB|gb|英国|英|United Kingdom", "🇰🇷|KR|kr|韩国|韩|South Korea", "🇫🇷|FR|fr|法国|法|France", "🇳🇱|NL|nl|荷兰|荷|Netherlands", "🇮🇳|IN|in|印度|印|India", "🇹🇷|TR|tr|土耳其|土|Turkey"]}
       ]
     },
     {
