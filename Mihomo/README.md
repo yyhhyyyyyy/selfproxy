@@ -13,6 +13,17 @@
 
 本份配置是以sukkaw_ruleset为主，也是以狐狐的思路进行编辑规则集的
 
+`fake-ip-filter` `nameserver-policy` `hosts` 参数需要结合 auto_update_config/auto.py 进行使用 
+
+如果不会运行该脚本  请手动打开链接
+
+`https://ruleset.skk.moe/Internal/clash_nameserver_policy.yaml`
+
+`https://ruleset.skk.moe/Internal/clash_fake_ip_filter.yaml`
+
+进行对应内容增加
+
+
 ## 参考：
 
 https://github.com/Rabbit-Spec/Clash/blob/Master/Yaml/Clash_Pro.yaml
