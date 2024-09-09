@@ -111,7 +111,7 @@ proxy-groups:
   - {name: Others, <<: *Select, filter: *FilterOthers}
   - {name: AllIn, <<: *Select, filter: *FilterAll}
 
-# 锚点 - 规则参数 [每小时更新一次订阅规则，更新规则时使用直连策略]
+# 锚点 - 规则参数 [每12小时更新一次订阅规则，更新规则时使用（🎯 节点选择）策略]
 RuleSet_classical: &RuleSet_classical {type: http, behavior: classical, interval: 43200, format: text, proxy: 🎯 节点选择}
 RuleSet_domain: &RuleSet_domain {type: http, behavior: domain, interval: 43200, format: text, proxy: 🎯 节点选择}
 RuleSet_ipcidr: &RuleSet_ipcidr {type: http, behavior: ipcidr, interval: 43200, format: text, proxy: 🎯 节点选择}
