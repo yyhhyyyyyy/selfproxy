@@ -1,3 +1,5 @@
+# 不再更新该配置！！！
+
 ## 自用singbox配置
 
 维护了一份 **[规则仓库](https://github.com/yyhhyyyyyy/sing-box-ruleset)**，欢迎使用

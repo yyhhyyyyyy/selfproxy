@@ -2,7 +2,7 @@
 
 - Surge
 
-- Sing-box
+- Sing-box（不再更新）
 
 - Mihomo
 
