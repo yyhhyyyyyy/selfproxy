@@ -414,7 +414,6 @@ function overwriteProxyGroups (params) {
         }
     ];
 
-
     const manualProxyGroupsConfig = manualProxyGroups
         .map ((item) => ({
             name: item.name,
@@ -493,8 +492,8 @@ function overwriteProxyGroups (params) {
     groups.push (...autoProxyGroups);
     groups.push (...manualProxyGroupsConfig);
     params ["proxy-groups"] = groups;
-
 }
+
 // 覆写DNS
 function overwriteDns (params) {
     const dnsList = [

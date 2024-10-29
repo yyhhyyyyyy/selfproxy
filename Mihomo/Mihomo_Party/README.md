@@ -1,5 +1,4 @@
 # MihomoParty覆写配置
 
-先留个坑，具体覆写配置已经完成了，会使用的可以先使用了
 
-教程等空了再写上来
+使用教程请看：[Mihomo Party 覆写](https://iyyh.net/archives/f51e9150-160f-4de4-9be8-3c9efc6618df)
