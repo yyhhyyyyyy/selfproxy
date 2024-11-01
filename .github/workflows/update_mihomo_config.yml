@@ -24,7 +24,9 @@ jobs:
                 pip install requests pyyaml
 
             - name: Run auto_update.py
-              run: python Mihomo/Mihomo_Party/auto_update.py
+              run: |
+                cd Mihomo/Mihomo_Party
+                python auto_update.py
             
             - name: Commit and push changes
               run: |
