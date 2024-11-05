@@ -6,6 +6,9 @@ on:
     - cron: '0 13 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
     update_mihomo_config:
         runs-on: ubuntu-latest
