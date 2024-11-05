@@ -39,6 +39,6 @@ jobs:
                 if git diff-index --quiet HEAD; then
                   echo "No changes to commit"
                 else
-                  git commit -m "Update Mihomo Party override script"
+                  git commit -m "❓ chore: Update Mihomo Party override script"
                   git push
                 fi
