@@ -677,6 +677,8 @@ function overwriteNameserverPolicy (params) {
         "+.npmmirror.com": "quic://dns.alidns.com:853",
         "+.alios.cn": "quic://dns.alidns.com:853",
         "+.wandoujia.com": "quic://dns.alidns.com:853",
+        "+.aligames.com": "quic://dns.alidns.com:853",
+        "+.25pp.com": "quic://dns.alidns.com:853",
         "*.aliapp.org": "quic://dns.alidns.com:853",
         "+.tanx.com": "quic://dns.alidns.com:853",
         "+.hellobike.com": "quic://dns.alidns.com:853",
