@@ -921,6 +921,22 @@ function overwriteHosts(params) {
     params.hosts = hosts;
 }
 
+// 覆写Tunnel
+function overwriteTunnel (params) {
+    const tunnelOptions = {
+        enable: true,
+        stack: "system",
+        device: "tun0",
+        "dns-hijack": ["any:53", "tcp://any:53"],
+        "auto-route": true,
+        "auto-detect-interface": true,
+        "strict-route": true,
+        // 根据自己环境来看要排除哪些网段
+        "route-exclude-address": [],
+    };
+    params.tun = { ...tunnelOptions };
+}
+
 function getProxiesByRegex (params, regex) {
     const matchedProxies = params.proxies.filter ((e) => regex.test (e.name)).map ((e) => e.name);
     return matchedProxies.length > 0 ? matchedProxies : ["手动选择"];
