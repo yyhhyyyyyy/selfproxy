@@ -13,7 +13,7 @@ def update_fake_ip_filter():
     js_fake_ip_filter = ",\n        ".join(f'"{item}"' for item in fake_ip_filter_list)
     new_function_code = f"""\
 // 覆写DNS.Fake IP Filter
-function overwriteFakeIpFilter(params) {{
+function overwriteFakeIpFilter (params) {{
     const fakeIpFilter = [
         {js_fake_ip_filter}
     ];
@@ -48,7 +48,7 @@ def update_nameserver_policy_and_hosts():
     )
     new_function_policy_code = f"""\
 // 覆写DNS.Nameserver Policy
-function overwriteNameserverPolicy(params) {{
+function overwriteNameserverPolicy (params) {{
     const nameserverPolicy = {{
         {formatted_policy}
     }};
@@ -56,7 +56,7 @@ function overwriteNameserverPolicy(params) {{
 }}"""
     new_function_hosts_code = f"""\
 // 覆写hosts
-function overwriteHosts(params) {{
+function overwriteHosts (params) {{
     const hosts = {{
         {formatted_hosts}
     }};

@@ -6,7 +6,8 @@ function main (params) {
     overwriteProxyGroups (params);
     overwriteDns (params);
     overwriteBasicOptions (params);
-    overwriteFakeIpFilter(params);
+    overwriteFakeIpFilter (params);
+    overwriteTunnel (params);
     return params;
 }
 
@@ -559,7 +560,7 @@ function overwriteBasicOptions (params) {
 }
 
 // 覆写DNS.Fake IP Filter
-function overwriteFakeIpFilter(params) {
+function overwriteFakeIpFilter (params) {
     const fakeIpFilter = [
         "+.+m2m",
         "+.$injections.adguard.org",
@@ -603,7 +604,7 @@ function overwriteFakeIpFilter(params) {
 }
 
 // 覆写DNS.Nameserver Policy
-function overwriteNameserverPolicy(params) {
+function overwriteNameserverPolicy (params) {
     const nameserverPolicy = {
         "dns.alidns.com": "quic://223.5.5.5:853",
         "doh.pub": "https://1.12.12.12/dns-query",
@@ -912,7 +913,7 @@ function overwriteNameserverPolicy(params) {
 }
 
 // 覆写hosts
-function overwriteHosts(params) {
+function overwriteHosts (params) {
     const hosts = {
         "dns.alidns.com": ['223.5.5.5', '223.6.6.6', '2400:3200:baba::1', '2400:3200::1'],
         "doh.pub": ['120.53.53.53', '1.12.12.12'],
