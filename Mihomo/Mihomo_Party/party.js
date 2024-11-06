@@ -8,6 +8,8 @@ function main (params) {
     overwriteBasicOptions (params);
     overwriteFakeIpFilter (params);
     overwriteTunnel (params);
+    overwriteNameserverPolicy (params);
+    overwriteHosts (params);
     return params;
 }
 
