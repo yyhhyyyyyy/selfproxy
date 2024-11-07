@@ -859,59 +859,12 @@ function overwriteNameserverPolicy (params) {
         "+.securelogin.com.cn": ['system://', 'system', 'dhcp://system'],
         "captive.apple.com": ['system://', 'system', 'dhcp://system'],
         "hotspot.cslwifi.com": ['system://', 'system', 'dhcp://system'],
-        "*.home": ['system://', 'system', 'dhcp://system'],
-        "instant.arubanetworks.com": ['system://', 'system', 'dhcp://system'],
-        "setmeup.arubanetworks.com": ['system://', 'system', 'dhcp://system'],
-        "router.asus.com": ['system://', 'system', 'dhcp://system'],
-        "repeater.asus.com": ['system://', 'system', 'dhcp://system'],
-        "+.asusrouter.com": ['system://', 'system', 'dhcp://system'],
-        "+.routerlogin.net": ['system://', 'system', 'dhcp://system'],
-        "+.routerlogin.com": ['system://', 'system', 'dhcp://system'],
-        "+.tplinkwifi.net": ['system://', 'system', 'dhcp://system'],
-        "+.tplogin.cn": ['system://', 'system', 'dhcp://system'],
-        "+.tplinkap.net": ['system://', 'system', 'dhcp://system'],
-        "+.tplinkmodem.net": ['system://', 'system', 'dhcp://system'],
-        "+.tplinkplclogin.net": ['system://', 'system', 'dhcp://system'],
-        "+.tplinkrepeater.net": ['system://', 'system', 'dhcp://system'],
-        "*.ui.direct": ['system://', 'system', 'dhcp://system'],
-        "unifi": ['system://', 'system', 'dhcp://system'],
-        "*.huaweimobilewifi.com": ['system://', 'system', 'dhcp://system'],
-        "*.router": ['system://', 'system', 'dhcp://system'],
-        "aterm.me": ['system://', 'system', 'dhcp://system'],
-        "console.gl-inet.com": ['system://', 'system', 'dhcp://system'],
-        "homerouter.cpe": ['system://', 'system', 'dhcp://system'],
-        "mobile.hotspot": ['system://', 'system', 'dhcp://system'],
-        "ntt.setup": ['system://', 'system', 'dhcp://system'],
-        "pi.hole": ['system://', 'system', 'dhcp://system'],
-        "*.plex.direct": ['system://', 'system', 'dhcp://system'],
         "*.m2m": ['system://', 'system', 'dhcp://system'],
         "injections.adguard.org": ['system://', 'system', 'dhcp://system'],
         "local.adguard.org": ['system://', 'system', 'dhcp://system'],
         "*._tcp": ['system://', 'system', 'dhcp://system'],
         "*.bogon": ['system://', 'system', 'dhcp://system'],
-        "*._msdcs": ['system://', 'system', 'dhcp://system'],
-        "*.lan": ['system://', 'system', 'dhcp://system'],
-        "*.localdomain": ['system://', 'system', 'dhcp://system'],
-        "+.home.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.10.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.16.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.17.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.18.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.19.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.20.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.21.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.22.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.23.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.24.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.25.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.26.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.27.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.28.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.29.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.30.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.31.172.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.168.192.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
-        "+.254.169.in-addr.arpa": ['system://', 'system', 'dhcp://system']
+        "*._msdcs": ['system://', 'system', 'dhcp://system']
     };
     params.dns["nameserver-policy"] = nameserverPolicy;
 }
@@ -920,8 +873,7 @@ function overwriteNameserverPolicy (params) {
 function overwriteHosts (params) {
     const hosts = {
         "dns.alidns.com": ['223.5.5.5', '223.6.6.6', '2400:3200:baba::1', '2400:3200::1'],
-        "doh.pub": ['120.53.53.53', '1.12.12.12'],
-        "localhost": ['127.0.0.1']
+        "doh.pub": ['120.53.53.53', '1.12.12.12']
     };
     params.hosts = hosts;
 }
