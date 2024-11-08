@@ -2,6 +2,9 @@ name: Update Mihomo Config
 
 on:
   push:
+    paths:
+      - 'Mihomo/Mihomo_Party/**'
+      - .github/workflows/update_mihomo_config.yml
   schedule:
     - cron: '0 13 * * *'
   workflow_dispatch:
