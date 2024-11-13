@@ -443,7 +443,7 @@ function overwriteProxyGroups (params) {
             name: "手动选择",
             type: "select",
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Cylink.png",
-            proxies: ["HK - 手动选择", "JP - 手动选择", "KR - 手动选择", "SG - 手动选择", "US - 手动选择", "UK - 手动选择", "FR - 手动选择", "DE - 手动选择", "TW - 手动选择", "DIRECT"],
+            proxies: ["HK - 手动选择", "JP - 手动选择", "KR - 手动选择", "SG - 手动选择", "US - 手动选择", "UK - 手动选择", "FR - 手动选择", "DE - 手动选择", "TW - 手动选择"],
         },
         {
             name: "自动选择",
@@ -901,5 +901,5 @@ function getProxiesByRegex (params, regex) {
 
 function getManualProxiesByRegex (params, regex) {
     const matchedProxies = params.proxies.filter ((e) => regex.test (e.name)).map ((e) => e.name);
-    return matchedProxies.length > 0 ? matchedProxies : ["DIRECT", "手动选择", "🎯 节点选择"];
+    return matchedProxies.length > 0 ? matchedProxies : ["COMPATIBLE"];
 }
