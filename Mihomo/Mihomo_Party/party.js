@@ -897,7 +897,7 @@ function overwriteTunnel (params) {
 
 function getProxiesByRegex (params, regex) {
     const matchedProxies = params.proxies.filter ((e) => regex.test (e.name)).map ((e) => e.name);
-    return matchedProxies.length > 0 ? matchedProxies : ["手动选择"];
+    return matchedProxies.length > 0 ? matchedProxies : ["COMPATIBLE"];
 }
 
 function getManualProxiesByRegex (params, regex) {
