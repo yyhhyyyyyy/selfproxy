@@ -372,47 +372,47 @@ function overwriteProxyGroups (params) {
     const manualProxyGroups = [
         { 
             name: "HK - 手动选择", 
-            regex: new RegExp(`^${includeTerms.HK}(?!.*${excludeTerms}).*$`, 'i'), 
+            regex: new RegExp(`^(?=.*${includeTerms.HK})(?!.*${excludeTerms}).*$`, "i"), 
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png" 
         },
         { 
             name: "JP - 手动选择", 
-            regex: new RegExp(`^${includeTerms.JP}(?!.*${excludeTerms}).*$`, 'i'), 
+            regex: new RegExp(`^(?=.*${includeTerms.JP})(?!.*${excludeTerms}).*$`, "i"), 
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png" 
         },
         { 
             name: "KR - 手动选择", 
-            regex: new RegExp(`^${includeTerms.KR}(?!.*${excludeTerms}).*$`, 'i'), 
+            regex: new RegExp(`^(?=.*${includeTerms.KR})(?!.*${excludeTerms}).*$`, "i"), 
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/KR.png" 
         },
         { 
             name: "SG - 手动选择", 
-            regex: new RegExp(`^${includeTerms.SG}(?!.*${excludeTerms}).*$`, 'i'), 
+            regex: new RegExp(`^(?=.*${includeTerms.SG})(?!.*${excludeTerms}).*$`, "i"), 
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png" 
         },
         { 
             name: "US - 手动选择", 
-            regex: new RegExp(`^${includeTerms.US}(?!.*${excludeTerms}).*$`, 'i'), 
+            regex: new RegExp(`^(?=.*${includeTerms.US})(?!.*${excludeTerms}).*$`, "i"), 
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png" 
         },
         { 
             name: "UK - 手动选择", 
-            regex: new RegExp(`^${includeTerms.UK}(?!.*${excludeTerms}).*$`, 'i'), 
+            regex: new RegExp(`^(?=.*${includeTerms.UK})(?!.*${excludeTerms}).*$`, "i"), 
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/UK.png" 
         },
         { 
             name: "FR - 手动选择", 
-            regex: new RegExp(`^${includeTerms.FR}(?!.*${excludeTerms}).*$`, 'i'), 
+            regex: new RegExp(`^(?=.*${includeTerms.FR})(?!.*${excludeTerms}).*$`, "i"), 
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/FR.png" 
         },
         { 
             name: "DE - 手动选择", 
-            regex: new RegExp(`^${includeTerms.DE}(?!.*${excludeTerms}).*$`, 'i'), 
+            regex: new RegExp(`^(?=.*${includeTerms.DE})(?!.*${excludeTerms}).*$`, "i"), 
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/DE.png" 
         },
         { 
             name: "TW - 手动选择", 
-            regex: new RegExp(`^${includeTerms.TW}(?!.*${excludeTerms}).*$`, 'i'), 
+            regex: new RegExp(`^(?=.*${includeTerms.TW})(?!.*${excludeTerms}).*$`, "i"), 
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png" 
         }
     ];
