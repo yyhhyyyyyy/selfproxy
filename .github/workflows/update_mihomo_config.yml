@@ -3,7 +3,7 @@ name: Update Mihomo Config
 on:
   push:
     paths:
-      - 'Mihomo/Mihomo_Party/**'
+      - 'Mihomo/Extension_Script/**'
       - .github/workflows/update_mihomo_config.yml
   schedule:
     - cron: '0 13 * * *'
@@ -31,7 +31,7 @@ jobs:
 
             - name: Run auto_update.py
               run: |
-                cd Mihomo/Mihomo_Party
+                cd Mihomo/Extension_Script
                 python auto_update.py
             
             - name: Commit and push changes
@@ -42,6 +42,6 @@ jobs:
                 if git diff-index --quiet HEAD; then
                   echo "No changes to commit"
                 else
-                  git commit -m "❓ chore: Update Mihomo Party override script"
+                  git commit -m "❓ chore: Update Mihomo Extension Script"
                   git push
                 fi

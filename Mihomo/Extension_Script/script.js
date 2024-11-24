@@ -1,4 +1,4 @@
-// Mihomo_Party 覆写
+// Mihomo Party 覆写 / Clash Verge Rev 扩展脚本
 
 function main (params) {
     if (!params.proxies) return params;

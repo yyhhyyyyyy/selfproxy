@@ -19,7 +19,7 @@ function overwriteFakeIpFilter (params) {{
     ];
     params.dns["fake-ip-filter"] = fakeIpFilter;
 }}"""
-    with open("./party.js", "r", encoding="utf-8") as file:
+    with open("./script.js", "r", encoding="utf-8") as file:
         content = file.read()
     updated_content = re.sub(
         r"// 覆写DNS.Fake IP Filter\nfunction overwriteFakeIpFilter\b[\s\S]*?fakeIpFilter;\s*}",
@@ -27,7 +27,7 @@ function overwriteFakeIpFilter (params) {{
         content,
         flags=re.DOTALL,
     )
-    with open("./party.js", "w", encoding="utf-8") as file:
+    with open("./script.js", "w", encoding="utf-8") as file:
         file.write(updated_content)
 
 
@@ -39,7 +39,9 @@ def update_nameserver_policy_and_hosts():
     nameserver_policy = data["dns"]["nameserver-policy"]
     hosts = data["hosts"]
     formatted_policy = ",\n        ".join(
-        f'"{domain}": "{server}"' if not isinstance(server, list) else f'"{domain}": {server}'
+        f'"{domain}": "{server}"'
+        if not isinstance(server, list)
+        else f'"{domain}": {server}'
         for domain, server in nameserver_policy.items()
     )
     formatted_hosts = ",\n        ".join(
@@ -62,7 +64,7 @@ function overwriteHosts (params) {{
     }};
     params.hosts = hosts;
 }}"""
-    with open("./party.js", "r", encoding="utf-8") as file:
+    with open("./script.js", "r", encoding="utf-8") as file:
         content = file.read()
     content = re.sub(
         r"// 覆写DNS.Nameserver Policy\nfunction overwriteNameserverPolicy\b[\s\S]*?nameserverPolicy;\s*}",
@@ -76,7 +78,7 @@ function overwriteHosts (params) {{
         content,
         flags=re.DOTALL,
     )
-    with open("./party.js", "w", encoding="utf-8") as file:
+    with open("./script.js", "w", encoding="utf-8") as file:
         file.write(content)
 
 
