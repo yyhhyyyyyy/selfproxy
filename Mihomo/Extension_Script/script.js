@@ -729,6 +729,7 @@ function overwriteNameserverPolicy (params) {
         "*.qlivecdn.com": "https://doh.pub/dns-query",
         "*.tcdnlive.com": "https://doh.pub/dns-query",
         "*.dnsv1.com": "https://doh.pub/dns-query",
+        "*.smtcdns.net": "https://doh.pub/dns-query",
         "upos-sz-mirrorali.bilivideo.com": "quic://dns.alidns.com:853",
         "upos-sz-estgoss.bilivideo.com": "quic://dns.alidns.com:853",
         "upos-sz-mirrorbd.bilivideo.com": "180.76.76.76",
