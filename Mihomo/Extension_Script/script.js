@@ -809,6 +809,8 @@ function overwriteNameserverPolicy (params) {
         "*.byteacctimg.com": "180.184.2.2",
         "*.ibytedapm.com": "180.184.2.2",
         "+.oceanengine.com": "180.184.2.2",
+        "*.edge-byted.com": "180.184.2.2",
+        "*.volcvideo.com": "180.184.2.2",
         "+.91.com": "180.76.76.76",
         "+.hao123.com": "180.76.76.76",
         "+.baidu.cn": "180.76.76.76",
