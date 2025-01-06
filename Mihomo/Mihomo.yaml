@@ -1,27 +1,78 @@
-# yyhhyyyyyy的Mihomo内核配置
-# 日期：2024-11-08
-# 版本：1.2
-# 说明：本份配置是以ruleset为主，而不是以geo系列为主，如果使用geo系列的可以不用往下看啦
-#      本份配置是以sukkaw_ruleset为主，也是以狐狐的思路进行编辑规则集的
-# 参考：https://github.com/Rabbit-Spec/Clash/blob/Master/Yaml/Clash_Pro.yaml
-#       https://blog.skk.moe/post/i-have-my-unique-surge-setup
-#       https://blog.skk.moe/tags/DNS/
-#       https://wiki.metacubex.one/
-# 感谢: 狐狐🦊，以及愿意耐心给予我帮助的各位
-
-mixed-port: 7890
+### 全局配置
+mixed-port: 7897
 allow-lan: true
-unified-delay: true
-tcp-concurrent: true
-external-controller: 0.0.0.0:9090
-### 如果使用的是裸核，需要将下面的注释去掉，方便ui界面的使用
-# external-ui: ui
-# external-ui-url: 'https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip'
+mode: rule
+log-level: warning
+ipv6: false
 find-process-mode: strict
-global-client-fingerprint: chrome
+### 如果使用的是裸核，需要将下面的注释去掉，方便ui界面的使用
+# external-controller: 0.0.0.0:9988
+# external-ui: ui
+# external-ui-url: 'https://mirror.ghproxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
+# secret: "yyhhyyyyyy"
 profile:
   store-selected: true
   store-fake-ip: true
+unified-delay: true
+tcp-concurrent: true
+global-client-fingerprint: chrome
+
+### DNS配置
+dns:
+  enable: true
+  prefer-h3: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  # fake-ip-filter start
+  fake-ip-filter:
+    - +.+m2m
+    - +.$injections.adguard.org
+    - +.$local.adguard.org
+    - +.+_tcp
+    - +.+bogon
+    - +.+_msdcs
+    - +.+lan
+    - +.+localdomain
+    - +.home.arpa
+    - +.10.in-addr.arpa
+    - +.16.172.in-addr.arpa
+    - +.17.172.in-addr.arpa
+    - +.18.172.in-addr.arpa
+    - +.19.172.in-addr.arpa
+    - +.20.172.in-addr.arpa
+    - +.21.172.in-addr.arpa
+    - +.22.172.in-addr.arpa
+    - +.23.172.in-addr.arpa
+    - +.24.172.in-addr.arpa
+    - +.25.172.in-addr.arpa
+    - +.26.172.in-addr.arpa
+    - +.27.172.in-addr.arpa
+    - +.28.172.in-addr.arpa
+    - +.29.172.in-addr.arpa
+    - +.30.172.in-addr.arpa
+    - +.31.172.in-addr.arpa
+    - +.168.192.in-addr.arpa
+    - +.254.169.in-addr.arpa
+    - dns.msftncsi.com
+    - "*.srv.nintendo.net"
+    - "*.stun.playstation.net"
+    - xbox.*.microsoft.com
+    - "*.xboxlive.com"
+    - "*.turn.twilio.com"
+    - "*.stun.twilio.com"
+    - stun.syncthing.net
+    - stun.*
+  # fake-ip-filter end
+  respect-rules: true
+  nameserver:
+    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
+
+### 域名嗅探
 sniffer:
   enable: true
   sniff:
@@ -35,49 +86,36 @@ sniffer:
   skip-domain:
     - "Mijia Cloud"
     - "+.push.apple.com"
+
+### Tunnel配置
 tun:
   enable: true
   stack: system
-  device: mihomo
+  device: Ethernet 99
+  auto-route: true
+  auto-detect-interface: true
   dns-hijack:
     - any:53
     - tcp://any:53
-  auto-route: true
-  auto-detect-interface: true
   strict-route: true
+  mtu: 1500
   # 如果有使用zerotier或者headscale等，需要自己配置排除自己的网段
   # route-exclude-address: ["192.168.110.0/24"]
-dns:
-  enable: true
-  ipv6: false
-  prefer-h3: true
-  respect-rules: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.1/8
-  nameserver:
-    # 网络环境文明的话推荐直接使用运营商的DNS服务器 或者 沿用上游的DNS服务器
-    - system
-    - https://223.5.5.5/dns-query
-    - https://doh.pub/dns-query
-  proxy-server-nameserver:
-    - https://223.5.5.5/dns-query
-    - https://doh.pub/dns-query
-mode: rule
-log-level: warning
-ipv6: false
-udp: true
 
-# 点订阅的参数 [每24小时更新一次订阅节点，每 60 秒一次健康检查]
-NodeParam: &NodeParam {type: http, interval: 86400, health-check: {enable: true, url: 'https://cp.cloudflare.com', interval: 60}}
-
+### 节点配置
+NodeParam: &NodeParam {type: http, interval: 86400, health-check: {enable: true, url: 'http://cp.cloudflare.com', interval: 300}}
 # 节点订阅
 proxy-providers: 
-  我的节点:
+  Node-1:
     url: '替换订阅链接'
     <<: *NodeParam
     path: './proxy_provider/providers.yaml'
+  # Node-2:
+  #   url: '替换订阅链接'
+  #   <<: *NodeParam
+  #   path: './proxy_provider/providers.yaml'
 
-# 锚点 - 节点筛选组
+# 节点筛选
 FilterHK: &FilterHK '^(?=.*(香港|HK|Hong|🇭🇰))^(?!.*(网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
 FilterJP: &FilterJP '^(?=.*(日本|JP|Japan|🇯🇵))^(?!.*(网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
 FilterKR: &FilterKR '^(?=.*(韩国|韓|KR|Korea|🇰🇷))^(?!.*(网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
@@ -90,10 +128,9 @@ FilterTW: &FilterTW '^(?=.*(台湾|TW|Taiwan|Wan|🇹🇼|🇨🇳))^(?!.*(网�
 FilterOthers: &FilterOthers '^(?!.*(🇭🇰|HK|Hong|香港|🇹🇼|TW|Taiwan|Wan|🇯🇵|JP|Japan|日本|🇸🇬|SG|Singapore|狮城|🇺🇸|US|United States|America|美国|🇩🇪|DE|Germany|德国|🇬🇧|UK|United Kingdom|英国|🇰🇷|KR|Korea|韩国|韓|🇫🇷|FR|France|法国)).*$'
 FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
 
-# 策略组参数锚点
-# 手动选择参数
-Select: &Select {type: select, url: 'https://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
-Auto: &Auto {type: url-test, url: 'https://cp.cloudflare.com', interval: 300, tolerance: 50, disable-udp: false, hidden: true, include-all: true}
+Select: &Select {type: select, url: 'http://cp.cloudflare.com', disable-udp: false, hidden: false, include-all: true}
+Auto: &Auto {type: url-test, url: 'http://cp.cloudflare.com', interval: 300, tolerance: 50, disable-udp: false, hidden: true, include-all: true}
+
 # 策略组
 proxy-groups: 
   - {name: 🎯 节点选择, type: select, proxies: [自动选择, 手动选择, DIRECT], url: https://cp.cloudflare.com, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
@@ -131,7 +168,8 @@ proxy-groups:
   - {name: AllIn - 手动选择, <<: *Select, filter: *FilterAll}
   - {name: AllIn - 自动选择, <<: *Auto, filter: *FilterAll}
 
-# 锚点 - 规则参数 [每12小时更新一次订阅规则，更新规则时使用（🎯 节点选择）策略]
+
+### 规则配置
 RuleSet_classical: &RuleSet_classical {type: http, behavior: classical, interval: 43200, format: text, proxy: 🎯 节点选择}
 RuleSet_domain: &RuleSet_domain {type: http, behavior: domain, interval: 43200, format: text, proxy: 🎯 节点选择}
 RuleSet_ipcidr: &RuleSet_ipcidr {type: http, behavior: ipcidr, interval: 43200, format: text, proxy: 🎯 节点选择}
