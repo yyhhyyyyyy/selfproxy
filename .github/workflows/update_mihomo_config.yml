@@ -31,8 +31,9 @@ jobs:
 
             - name: Run auto_update.py
               run: |
-                cd Mihomo/Extension_Script
-                python auto_update.py
+                cd Mihomo/auto_update_config
+                python auto_update_js.py
+                python auto_update_yaml.py
             
             - name: Commit and push changes
               run: |
@@ -42,6 +43,6 @@ jobs:
                 if git diff-index --quiet HEAD; then
                   echo "No changes to commit"
                 else
-                  git commit -m "❓ chore: Update Mihomo Extension Script"
+                  git commit -m "❓ chore: Update Mihomo Extension Script and Config"
                   git push
                 fi
