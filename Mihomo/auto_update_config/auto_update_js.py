@@ -19,7 +19,7 @@ function overwriteFakeIpFilter (params) {{
     ];
     params.dns["fake-ip-filter"] = fakeIpFilter;
 }}"""
-    with open("./script.js", "r", encoding="utf-8") as file:
+    with open("../Extension_Script/script.js", "r", encoding="utf-8") as file:
         content = file.read()
     updated_content = re.sub(
         r"// 覆写DNS.Fake IP Filter\nfunction overwriteFakeIpFilter\b[\s\S]*?fakeIpFilter;\s*}",
@@ -27,7 +27,7 @@ function overwriteFakeIpFilter (params) {{
         content,
         flags=re.DOTALL,
     )
-    with open("./script.js", "w", encoding="utf-8") as file:
+    with open("../Extension_Script/script.js", "w", encoding="utf-8") as file:
         file.write(updated_content)
 
 
@@ -64,7 +64,7 @@ function overwriteHosts (params) {{
     }};
     params.hosts = hosts;
 }}"""
-    with open("./script.js", "r", encoding="utf-8") as file:
+    with open("../Extension_Script/script.js", "r", encoding="utf-8") as file:
         content = file.read()
     content = re.sub(
         r"// 覆写DNS.Nameserver Policy\nfunction overwriteNameserverPolicy\b[\s\S]*?nameserverPolicy;\s*}",
@@ -78,7 +78,7 @@ function overwriteHosts (params) {{
         content,
         flags=re.DOTALL,
     )
-    with open("./script.js", "w", encoding="utf-8") as file:
+    with open("../Extension_Script/script.js", "w", encoding="utf-8") as file:
         file.write(content)
 
 
