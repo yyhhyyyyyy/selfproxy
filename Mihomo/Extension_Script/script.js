@@ -82,9 +82,7 @@ function overwriteFakeIpFilter (params) {
         "+.+m2m",
         "+.$injections.adguard.org",
         "+.$local.adguard.org",
-        "+.+_tcp",
         "+.+bogon",
-        "+.+_msdcs",
         "+.+lan",
         "+.+localdomain",
         "+.home.arpa",
@@ -383,9 +381,7 @@ function overwriteNameserverPolicy (params) {
         "*.m2m": ['system://', 'system', 'dhcp://system'],
         "injections.adguard.org": ['system://', 'system', 'dhcp://system'],
         "local.adguard.org": ['system://', 'system', 'dhcp://system'],
-        "*._tcp": ['system://', 'system', 'dhcp://system'],
-        "*.bogon": ['system://', 'system', 'dhcp://system'],
-        "*._msdcs": ['system://', 'system', 'dhcp://system']
+        "*.bogon": ['system://', 'system', 'dhcp://system']
     };
     params.dns["nameserver-policy"] = nameserverPolicy;
 }

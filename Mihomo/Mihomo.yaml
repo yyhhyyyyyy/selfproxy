@@ -29,9 +29,7 @@ dns:
     - +.+m2m
     - +.$injections.adguard.org
     - +.$local.adguard.org
-    - +.+_tcp
     - +.+bogon
-    - +.+_msdcs
     - +.+lan
     - +.+localdomain
     - +.home.arpa
