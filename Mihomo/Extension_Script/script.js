@@ -82,9 +82,7 @@ function overwriteFakeIpFilter (params) {
         "+.+m2m",
         "+.$injections.adguard.org",
         "+.$local.adguard.org",
-        "+.+_tcp",
         "+.+bogon",
-        "+.+_msdcs",
         "+.+lan",
         "+.+localdomain",
         "+.home.arpa",
@@ -245,6 +243,8 @@ function overwriteNameserverPolicy (params) {
         "*.tcdnlive.com": "https://doh.pub/dns-query",
         "*.dnsv1.com": "https://doh.pub/dns-query",
         "*.smtcdns.net": "https://doh.pub/dns-query",
+        "+.coding.net": "https://doh.pub/dns-query",
+        "*.codehub.cn": "https://doh.pub/dns-query",
         "upos-sz-mirrorali.bilivideo.com": "quic://dns.alidns.com:853",
         "upos-sz-estgoss.bilivideo.com": "quic://dns.alidns.com:853",
         "upos-sz-mirrorbd.bilivideo.com": "180.76.76.76",
@@ -381,9 +381,7 @@ function overwriteNameserverPolicy (params) {
         "*.m2m": ['system://', 'system', 'dhcp://system'],
         "injections.adguard.org": ['system://', 'system', 'dhcp://system'],
         "local.adguard.org": ['system://', 'system', 'dhcp://system'],
-        "*._tcp": ['system://', 'system', 'dhcp://system'],
-        "*.bogon": ['system://', 'system', 'dhcp://system'],
-        "*._msdcs": ['system://', 'system', 'dhcp://system']
+        "*.bogon": ['system://', 'system', 'dhcp://system']
     };
     params.dns["nameserver-policy"] = nameserverPolicy;
 }
