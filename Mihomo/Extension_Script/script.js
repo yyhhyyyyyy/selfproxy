@@ -437,7 +437,8 @@ function overwriteNameserverPolicy (params) {
 function overwriteHosts (params) {
     const hosts = {
         "dns.alidns.com": ['223.5.5.5', '223.6.6.6', '2400:3200:baba::1', '2400:3200::1'],
-        "doh.pub": ['120.53.53.53', '1.12.12.12']
+        "doh.pub": ['120.53.53.53', '1.12.12.12'],
+        "cdn.jsdelivr.net": ['cdn.jsdelivr.net.cdn.cloudflare.net']
     };
     params.hosts = hosts;
 }
