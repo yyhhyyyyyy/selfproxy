@@ -1,20 +1,20 @@
 // Mihomo Party 覆写 / Clash Verge Rev 扩展脚本
 
-function main (params) {
+function main(params) {
     if (!params.proxies) return params;
-    overwriteBasicOptions (params);
-    overwriteDns (params);
-    overwriteFakeIpFilter (params);
-    overwriteNameserverPolicy (params);
-    overwriteHosts (params);
-    overwriteTunnel (params);
-    overwriteProxyGroups (params);
-    overwriteRules (params);
+    overwriteBasicOptions(params);
+    overwriteDns(params);
+    overwriteFakeIpFilter(params);
+    overwriteNameserverPolicy(params);
+    overwriteHosts(params);
+    overwriteTunnel(params);
+    overwriteProxyGroups(params);
+    overwriteRules(params);
     return params;
 }
 
 // 覆写Basic Options
-function overwriteBasicOptions (params) {
+function overwriteBasicOptions(params) {
     const otherOptions = {
         "mixed-port": 7897,
         "allow-lan": true,
@@ -46,13 +46,13 @@ function overwriteBasicOptions (params) {
             "skip-domain": ["Mijia Cloud", "+.push.apple.com"]
         },
     };
-    Object.keys (otherOptions).forEach ((key) => {
-        params [key] = otherOptions [key];
+    Object.keys(otherOptions).forEach((key) => {
+        params[key] = otherOptions[key];
     });
 }
 
 // 覆写DNS
-function overwriteDns (params) {
+function overwriteDns(params) {
     const dnsList = [
         "https://223.5.5.5/dns-query",
         "https://doh.pub/dns-query",
@@ -448,7 +448,7 @@ function overwriteHosts (params) {
 }
 
 // 覆写Tunnel
-function overwriteTunnel (params) {
+function overwriteTunnel(params) {
     const tunnelOptions = {
         enable: true,
         stack: "system",
@@ -464,9 +464,9 @@ function overwriteTunnel (params) {
 }
 
 // 覆写代理组
-function overwriteProxyGroups (params) {
+function overwriteProxyGroups(params) {
     // 所有代理
-    const allProxies = params ["proxies"].map ((e) => e.name);
+    const allProxies = params["proxies"].map((e) => e.name);
     // 公共的正则片段
     const excludeTerms = "剩余|到期|主页|官网|游戏|关注|网站|地址|有效|网址|禁止|邮箱|发布|客服|订阅|节点|问题|联系";
     // 包含条件：各个国家或地区的关键词
@@ -494,82 +494,82 @@ function overwriteProxyGroups (params) {
         { name: "UK - 自动选择", regex: new RegExp(`^(?=.*${includeTerms.UK})(?!.*${excludeTerms}).*$`, "i") },
         { name: "FR - 自动选择", regex: new RegExp(`^(?=.*${includeTerms.FR})(?!.*${excludeTerms}).*$`, "i") },
         { name: "DE - 自动选择", regex: new RegExp(`^(?=.*${includeTerms.DE})(?!.*${excludeTerms}).*$`, "i") },
-        { 
-            name: "其它 - 自动选择", 
-            regex: new RegExp(`^(?!.*(?:${allCountryTerms}|${excludeTerms})).*$`, "i") 
+        {
+            name: "其它 - 自动选择",
+            regex: new RegExp(`^(?!.*(?:${allCountryTerms}|${excludeTerms})).*$`, "i")
         }
     ];
-        
+
     const autoProxyGroups = autoProxyGroupRegexs
-        .map ((item) => ({
+        .map((item) => ({
             name: item.name,
             type: "url-test",
             url: "https://cp.cloudflare.com",
             interval: 300,
             tolerance: 50,
-            proxies: getProxiesByRegex (params, item.regex),
+            proxies: getProxiesByRegex(params, item.regex),
             hidden: true,
         }))
-        .filter ((item) => item.proxies.length > 0);
+        .filter((item) => item.proxies.length > 0);
 
     // 手动选择代理组
     const manualProxyGroups = [
-        { 
-            name: "HK - 手动选择", 
-            regex: new RegExp(`^(?=.*${includeTerms.HK})(?!.*${excludeTerms}).*$`, "i"), 
-            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png" 
+        {
+            name: "HK - 手动选择",
+            regex: new RegExp(`^(?=.*${includeTerms.HK})(?!.*${excludeTerms}).*$`, "i"),
+            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png"
         },
-        { 
-            name: "JP - 手动选择", 
-            regex: new RegExp(`^(?=.*${includeTerms.JP})(?!.*${excludeTerms}).*$`, "i"), 
-            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png" 
+        {
+            name: "JP - 手动选择",
+            regex: new RegExp(`^(?=.*${includeTerms.JP})(?!.*${excludeTerms}).*$`, "i"),
+            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png"
         },
-        { 
-            name: "KR - 手动选择", 
-            regex: new RegExp(`^(?=.*${includeTerms.KR})(?!.*${excludeTerms}).*$`, "i"), 
-            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/KR.png" 
+        {
+            name: "KR - 手动选择",
+            regex: new RegExp(`^(?=.*${includeTerms.KR})(?!.*${excludeTerms}).*$`, "i"),
+            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/KR.png"
         },
-        { 
-            name: "SG - 手动选择", 
-            regex: new RegExp(`^(?=.*${includeTerms.SG})(?!.*${excludeTerms}).*$`, "i"), 
-            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png" 
+        {
+            name: "SG - 手动选择",
+            regex: new RegExp(`^(?=.*${includeTerms.SG})(?!.*${excludeTerms}).*$`, "i"),
+            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png"
         },
-        { 
-            name: "US - 手动选择", 
-            regex: new RegExp(`^(?=.*${includeTerms.US})(?!.*${excludeTerms}).*$`, "i"), 
-            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png" 
+        {
+            name: "US - 手动选择",
+            regex: new RegExp(`^(?=.*${includeTerms.US})(?!.*${excludeTerms}).*$`, "i"),
+            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png"
         },
-        { 
-            name: "UK - 手动选择", 
-            regex: new RegExp(`^(?=.*${includeTerms.UK})(?!.*${excludeTerms}).*$`, "i"), 
-            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/UK.png" 
+        {
+            name: "UK - 手动选择",
+            regex: new RegExp(`^(?=.*${includeTerms.UK})(?!.*${excludeTerms}).*$`, "i"),
+            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/UK.png"
         },
-        { 
-            name: "FR - 手动选择", 
-            regex: new RegExp(`^(?=.*${includeTerms.FR})(?!.*${excludeTerms}).*$`, "i"), 
-            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/FR.png" 
+        {
+            name: "FR - 手动选择",
+            regex: new RegExp(`^(?=.*${includeTerms.FR})(?!.*${excludeTerms}).*$`, "i"),
+            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/FR.png"
         },
-        { 
-            name: "DE - 手动选择", 
-            regex: new RegExp(`^(?=.*${includeTerms.DE})(?!.*${excludeTerms}).*$`, "i"), 
-            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/DE.png" 
+        {
+            name: "DE - 手动选择",
+            regex: new RegExp(`^(?=.*${includeTerms.DE})(?!.*${excludeTerms}).*$`, "i"),
+            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/DE.png"
         },
-        { 
-            name: "TW - 手动选择", 
-            regex: new RegExp(`^(?=.*${includeTerms.TW})(?!.*${excludeTerms}).*$`, "i"), 
-            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png" 
+        {
+            name: "TW - 手动选择",
+            regex: new RegExp(`^(?=.*${includeTerms.TW})(?!.*${excludeTerms}).*$`, "i"),
+            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png"
         }
     ];
 
     const manualProxyGroupsConfig = manualProxyGroups
-        .map ((item) => ({
+        .map((item) => ({
             name: item.name,
             type: "select",
-            proxies: getManualProxiesByRegex (params, item.regex),
+            proxies: getManualProxiesByRegex(params, item.regex),
             icon: item.icon,
             hidden: false,
         }))
-        .filter ((item) => item.proxies.length > 0);
+        .filter((item) => item.proxies.length > 0);
 
     // 负载均衡策略
     // 可选值：round-robin / consistent-hashing / sticky-sessions
@@ -653,14 +653,14 @@ function overwriteProxyGroups (params) {
     ];
 
     autoProxyGroups.length &&
-        groups [2].proxies.unshift (...autoProxyGroups.map ((item) => item.name));
-    groups.push (...autoProxyGroups);
-    groups.push (...manualProxyGroupsConfig);
-    params ["proxy-groups"] = groups;
+        groups[2].proxies.unshift(...autoProxyGroups.map((item) => item.name));
+    groups.push(...autoProxyGroups);
+    groups.push(...manualProxyGroupsConfig);
+    params["proxy-groups"] = groups;
 }
 
 // 覆写规则
-function overwriteRules (params) {
+function overwriteRules(params) {
     const adNonipRules = [
         "RULE-SET,reject_non_ip,REJECT",
         "RULE-SET,reject_domainset,REJECT",
@@ -671,7 +671,7 @@ function overwriteRules (params) {
     const customRules = [
         // 在此添加自定义规则，优先级次于ad。例子：
         // "DOMAIN,baidu.com,DIRECT",
-      ];
+    ];
 
     const nonipRules = [
         "RULE-SET,cdn_domainset,🎯 节点选择",
@@ -960,17 +960,17 @@ function overwriteRules (params) {
             proxy: "🎯 节点选择"
         }
     };
-    
-    params ["rule-providers"] = ruleProviders;
-    params ["rules"] = rules;
+
+    params["rule-providers"] = ruleProviders;
+    params["rules"] = rules;
 }
 
-function getProxiesByRegex (params, regex) {
-    const matchedProxies = params.proxies.filter ((e) => regex.test (e.name)).map ((e) => e.name);
+function getProxiesByRegex(params, regex) {
+    const matchedProxies = params.proxies.filter((e) => regex.test(e.name)).map((e) => e.name);
     return matchedProxies.length > 0 ? matchedProxies : ["COMPATIBLE"];
 }
 
-function getManualProxiesByRegex (params, regex) {
-    const matchedProxies = params.proxies.filter ((e) => regex.test (e.name)).map ((e) => e.name);
+function getManualProxiesByRegex(params, regex) {
+    const matchedProxies = params.proxies.filter((e) => regex.test(e.name)).map((e) => e.name);
     return matchedProxies.length > 0 ? matchedProxies : ["COMPATIBLE"];
 }
