@@ -571,6 +571,14 @@ function overwriteProxyGroups (params) {
         }))
         .filter ((item) => item.proxies.length > 0);
 
+    // 负载均衡策略
+    // 可选值：round-robin / consistent-hashing / sticky-sessions
+    // round-robin：轮询 按顺序循环使用代理列表中的节点
+    // consistent-hashing：散列 根据请求的哈希值将请求分配到固定的节点
+    // sticky-sessions：缓存 对「你的设备IP + 目标地址」组合计算哈希值，根据哈希值将请求分配到固定的节点 缓存 10 分钟过期
+    // 默认值：consistent-hashing
+    const loadBalanceStrategy = "consistent-hashing";
+
     const groups = [
         {
             name: "🎯 节点选择",
@@ -580,6 +588,7 @@ function overwriteProxyGroups (params) {
             proxies: [
                 "自动选择",
                 "手动选择",
+                "⚖️ 负载均衡",
                 "DIRECT",
             ],
         },
@@ -594,6 +603,15 @@ function overwriteProxyGroups (params) {
             type: "select",
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png",
             proxies: ["ALL - 自动选择"],
+        },
+        {
+            name: "⚖️ 负载均衡",
+            type: "load-balance",
+            url: "https://cp.cloudflare.com",
+            interval: 300,
+            strategy: loadBalanceStrategy,
+            proxies: allProxies,
+            icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Available.png"
         },
         {
             name: "ALL - 自动选择",
