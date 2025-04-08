@@ -2,7 +2,45 @@
 
 ## 🔗 配置文件
 
+### 🖥️ macOS 配置
+https://raw.githubusercontent.com/yyhhyyyyyy/selfproxy/refs/heads/main/Surge/Surge-Mac.conf
+
+### 📱 iOS 配置
 https://raw.githubusercontent.com/yyhhyyyyyy/selfproxy/refs/heads/main/Surge/Surge.conf
+
+## ⚙️ 主要功能
+
+- 🔄 智能分流：各国节点智能选择
+- 🤖 支持 AIGC 服务（ChatGPT等）
+- 📱 电报信息独立策略
+- 🍎 苹果服务优化
+- Ⓜ️ 微软服务优化
+- 📺 流媒体服务支持
+- 🛡️ 广告过滤与隐私保护
+
+## 🌐 策略组说明
+
+- 🎯 **节点选择**：主要代理选择
+- ✈️ **电报信息**：Telegram专用
+- 🤖 **AIGC**：AI服务专用
+- Ⓜ️ **微软服务**：Microsoft相关服务
+- 🍎 **苹果服务**：Apple相关服务
+- 📺 **看看剧**：流媒体服务专用
+
+### 🌍 地区节点
+- 🇭🇰 香港节点
+- 🇺🇸 美国节点
+- 🇯🇵 日本节点
+- 🇨🇳 台湾节点
+- 🇸🇬 新加坡节点
+- 🇩🇪 德国节点
+- 🇬🇧 英国节点
+- 🇰🇷 韩国节点
+- 🇫🇷 法国节点
+- 🇳🇱 荷兰节点
+- 🇮🇳 印度节点
+- 🇹🇷 土耳其节点
+- 🛴 低倍节点：专为流媒体优化
 
 ## 📦 模块列表
 
@@ -67,6 +105,32 @@ https://raw.githubusercontent.com/yyhhyyyyyy/selfproxy/refs/heads/main/Surge/Sur
 #### 🧰 (三) 其他模块
 
 更多模块请自行搜索或查看各开发者仓库
+
+## 🔄 规则说明
+
+配置使用了 SKK 的规则集，包括：
+
+### 📱 非 IP 类规则
+- 去广告域名过滤
+- CDN 域名优化
+- 流媒体域名分流
+- Telegram 域名分流
+- Apple 与 Microsoft CDN 优化
+- AIGC 服务分流
+- 常见国内外域名分类
+
+### 🌐 IP 类规则
+- 去广告 IP 规则
+- Telegram IP 分流
+- 流媒体 IP 分流
+- 局域网与国内 IP 直连
+
+## 🚀 使用方法
+
+1. 导入基础配置文件（macOS 或 iOS）
+2. 安装必要模块
+3. 添加自己的订阅节点
+4. 根据需要调整策略组设置
 
 ---
 
