@@ -84,6 +84,7 @@ function overwriteFakeIpFilter (params) {
         "+.$local.adguard.org",
         "+.+bogon",
         "+.+lan",
+        "+.+local",
         "+.+localdomain",
         "+.home.arpa",
         "dns.msftncsi.com",
@@ -414,6 +415,7 @@ function overwriteNameserverPolicy (params) {
         "+.168.192.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
         "+.254.169.in-addr.arpa": ['system://', 'system', 'dhcp://system'],
         "*.lan": ['system://', 'system', 'dhcp://system'],
+        "*.local": ['system://', 'system', 'dhcp://system'],
         "*.localdomain": ['system://', 'system', 'dhcp://system'],
         "+.home.arpa": ['system://', 'system', 'dhcp://system']
     };

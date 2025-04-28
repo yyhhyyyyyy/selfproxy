@@ -31,6 +31,7 @@ dns:
     - +.$local.adguard.org
     - +.+bogon
     - +.+lan
+    - +.+local
     - +.+localdomain
     - +.home.arpa
     - dns.msftncsi.com
