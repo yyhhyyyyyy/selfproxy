@@ -267,6 +267,7 @@ function overwriteNameserverPolicy (params) {
         "+.xiaomi.net": "https://doh.pub/dns-query",
         "+.xiaomiev.com": "https://doh.pub/dns-query",
         "+.xiaomiyoupin.com": "https://doh.pub/dns-query",
+        "+.gorouter.info": "https://doh.pub/dns-query",
         "+.bytedance.com": "180.184.2.2",
         "*.bytecdn.cn": "180.184.2.2",
         "*.volccdn.com": "180.184.2.2",
