@@ -1,11 +1,10 @@
-name: Update Mihomo Config
+name: Update Mihomo Extension Script
 
 on:
   push:
     paths:
-      - 'Mihomo/mihomo-single.yaml'
-      - 'Mihomo/mihomo-multi.yaml'
-      - '.github/workflows/update_mihomo_config.yml'
+      - 'Mihomo/Extension_Script/**'
+      - '.github/workflows/update_mihomo_script.yml'
   schedule:
     - cron: '0 13 * * *'
   workflow_dispatch:
@@ -14,27 +13,27 @@ permissions:
   contents: write
 
 jobs:
-    update_mihomo_config:
+    update_mihomo_script:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
               uses: actions/checkout@v3
-
+    
             - name: Set up Python 3.11
               uses: actions/setup-python@v4
               with:
                 python-version: '3.11'
-
+            
             - name: Install dependencies
               run: |
                 python -m pip install --upgrade pip
                 pip install requests pyyaml
-
-            - name: Run auto_update_yaml.py
+            
+            - name: Run auto_update_js.py
               run: |
                 cd Mihomo/auto_update_config
-                python auto_update_yaml.py
-
+                python auto_update_js.py
+            
             - name: Commit and push changes
               run: |
                 git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -43,6 +42,6 @@ jobs:
                 if git diff-index --quiet HEAD; then
                   echo "No changes to commit"
                 else
-                  git commit -m "chore: Update Mihomo Config"
+                  git commit -m "chore: Update Mihomo Extension Script"
                   git push
                 fi
