@@ -85,6 +85,7 @@ function overwriteFakeIpFilter (params) {
         "+.+bogon",
         "+.+lan",
         "+.+local",
+        "+.+internal",
         "+.+localdomain",
         "+.home.arpa",
         "dns.msftncsi.com",
@@ -419,6 +420,7 @@ function overwriteNameserverPolicy (params) {
         "+.254.169.in-addr.arpa": "system",
         "*.lan": "system",
         "*.local": "system",
+        "*.internal": "system",
         "*.localdomain": "system",
         "+.home.arpa": "system"
     };
