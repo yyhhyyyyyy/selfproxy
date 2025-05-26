@@ -69,7 +69,6 @@ function overwriteDns(params) {
         ipv6: false,
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
-        "respect-rules": true,
         nameserver: dnsList,
         "proxy-server-nameserver": proxyDnsList,
     };

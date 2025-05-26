@@ -46,7 +46,6 @@ dns:
     - "*.sslip.io"
     - "*.nip.io"
   # fake-ip-filter end
-  respect-rules: true
   nameserver:
     - https://223.5.5.5/dns-query
     - https://doh.pub/dns-query
@@ -73,7 +72,7 @@ sniffer:
 tun:
   enable: true
   stack: system
-  device: Ethernet 99
+  device: Ethernet99
   auto-route: true
   auto-detect-interface: true
   dns-hijack:
