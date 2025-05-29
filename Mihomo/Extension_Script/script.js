@@ -253,6 +253,7 @@ function overwriteNameserverPolicy (params) {
         "+.bilicomic.com": "https://doh.pub/dns-query",
         "+.bilicomics.com": "https://doh.pub/dns-query",
         "*.bilicdn1.com": "https://doh.pub/dns-query",
+        "*.bulicdn2.com": "https://doh.pub/dns-query",
         "+.mi.com": "https://doh.pub/dns-query",
         "+.duokan.com": "https://doh.pub/dns-query",
         "*.mi-img.com": "https://doh.pub/dns-query",
