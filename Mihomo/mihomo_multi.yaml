@@ -1,3 +1,6 @@
+# yyhhyyyyyy的Mihomo多节点配置
+# Date：2025-06-04
+
 ### 全局配置
 mixed-port: 7897
 allow-lan: true
@@ -5,17 +8,19 @@ mode: rule
 log-level: warning
 ipv6: false
 find-process-mode: strict
+unified-delay: true
+tcp-concurrent: true
+global-client-fingerprint: chrome
+
 ### 如果使用的是裸核，需要将下面的注释去掉，方便ui界面的使用
 # external-controller: 0.0.0.0:9988
 # external-ui: ui
 # external-ui-url: 'https://mirror.ghproxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
 # secret: "yyhhyyyyyy"
+
 profile:
   store-selected: true
   store-fake-ip: true
-unified-delay: true
-tcp-concurrent: true
-global-client-fingerprint: chrome
 
 ### DNS配置
 dns:
@@ -83,8 +88,9 @@ tun:
   # 如果有使用zerotier或者headscale等，需要自己配置排除自己的网段
   # route-exclude-address: ["192.168.110.0/24"]
 
-### 订阅基础配置
+### 订阅基础配置 [每天更新一次订阅节点，每 300 秒一次健康检查]
 NodeParam: &NodeParam {type: http, interval: 86400, health-check: {enable: true, url: 'http://connectivitycheck.platform.hicloud.com/generate_204', interval: 300}}
+
 # 订阅合集
 proxy-providers:
   Node-1:
@@ -115,34 +121,74 @@ FilterDE: &FilterDE '^(?=.*((?i)🇩🇪|德国|\b(DE|Germany)(\d+)?\b))(?!.*((?
 FilterOthers: &FilterOthers '^(?!.*(🇭🇰|HK|Hong|香港|🇹🇼|TW|Taiwan|Wan|🇯🇵|JP|Japan|日本|🇸🇬|SG|Singapore|狮城|🇺🇸|US|United States|America|美国|🇩🇪|DE|Germany|德国|🇬🇧|UK|United Kingdom|英国|🇰🇷|KR|Korea|韩国|韓|🇫🇷|FR|France|法国)).*$'
 FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
 
+### 策略组基础配置
+# 手动选择
 Select: &Select {type: select, url: 'http://connectivitycheck.platform.hicloud.com/generate_204', disable-udp: false, hidden: false, include-all: true}
-Auto: &Auto {type: url-test, url: 'http://connectivitycheck.platform.hicloud.com/generate_204', interval: 300, tolerance: 50, disable-udp: false, hidden: true, include-all: true}
+# 自动选择 [每 300 秒一次惰性健康检查，容差 50ms，时延超过 2 秒判定为失败，失败 3 次自动触发健康检查]
+UrlTest: &UrlTest {type: url-test, url: 'http://connectivitycheck.platform.hicloud.com/generate_204', interval: 300, lazy: true, tolerance: 50, timeout: 2000, disable-udp: false, max-failed-times: 3, hidden: true, include-all: true}
+# 自动回退 [每 300 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次自动触发健康检查]
+FallBack: &FallBack {type: fallback, url: 'http://connectivitycheck.platform.hicloud.com/generate_204', interval: 300, lazy: true, timeout: 2000, disable-udp: false, max-failed-times: 3, hidden: true, include-all: true}
+# 负载均衡 [每 300 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
+LoadBalance: &LoadBalance {type: load-balance, url: 'http://connectivitycheck.platform.hicloud.com/generate_204', interval: 300, lazy: true, disable-udp: false, strategy: consistent-hashing, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
 
 # 策略组
 proxy-groups:
   # 主选择组
-  - {name: 🎯 节点选择, type: select, proxies: [自动选择, 手动选择, DIRECT], url: http://connectivitycheck.platform.hicloud.com/generate_204, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
+  - {name: 🎯 节点选择, type: select, proxies: [智能选择, 手动选择, DIRECT], url: http://connectivitycheck.platform.hicloud.com/generate_204, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
 
-  # 手动/自动
+  # 手动/Auto
   - {name: 手动选择, type: select, proxies: [🇭🇰 - 手动选择, 🇯🇵 - 手动选择, 🇰🇷 - 手动选择, 🇸🇬 - 手动选择, 🇺🇸 - 手动选择, 🇬🇧 - 手动选择, 🇫🇷 - 手动选择, 🇩🇪 - 手动选择, 🇹🇼 - 手动选择, Others - 手动选择], url: http://connectivitycheck.platform.hicloud.com/generate_204, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Cylink.png}
-  - {name: 自动选择, type: select, proxies: [🇭🇰 - 自动选择, 🇯🇵 - 自动选择, 🇰🇷 - 自动选择, 🇸🇬 - 自动选择, 🇺🇸 - 自动选择, 🇬🇧 - 自动选择, 🇫🇷 - 自动选择, 🇩🇪 - 自动选择, 🇹🇼 - 自动选择], url: http://connectivitycheck.platform.hicloud.com/generate_204, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png}
+  - {name: 智能选择, type: select, proxies: [🇭🇰 - Auto, 🇯🇵 - Auto, 🇰🇷 - Auto, 🇸🇬 - Auto, 🇺🇸 - Auto, 🇬🇧 - Auto, 🇫🇷 - Auto, 🇩🇪 - Auto, 🇹🇼 - Auto], url: http://connectivitycheck.platform.hicloud.com/generate_204, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png}
 
   # 应用分组
-  - {name: ✈️ 电报信息, type: select, proxies: [🎯 节点选择, 🇭🇰 - 自动选择, 🇯🇵 - 自动选择, 🇸🇬 - 自动选择, 🇺🇸 - 自动选择], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png}
-  - {name: 🤖 AIGC, type: select, proxies: [🇺🇸 - 自动选择, 🎯 节点选择, 🇭🇰 - 自动选择, 🇯🇵 - 自动选择, 🇸🇬 - 自动选择], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png}
-  - {name: 🍎 苹果服务, type: select, proxies: [DIRECT, 🎯 节点选择, 🇭🇰 - 自动选择, 🇺🇸 - 自动选择], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Apple.png}
-  - {name: Ⓜ️ 微软服务, type: select, proxies: [DIRECT, 🎯 节点选择, 🇭🇰 - 自动选择, 🇺🇸 - 自动选择], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png}
+  - {name: ✈️ 电报信息, type: select, proxies: [🎯 节点选择, 🇭🇰 - Auto, 🇯🇵 - Auto, 🇸🇬 - Auto, 🇺🇸 - Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png}
+  - {name: 🤖 AIGC, type: select, proxies: [🇺🇸 - Auto, 🎯 节点选择, 🇭🇰 - Auto, 🇯🇵 - Auto, 🇸🇬 - Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png}
+  - {name: 🍎 苹果服务, type: select, proxies: [DIRECT, 🎯 节点选择, 🇭🇰 - Auto, 🇺🇸 - Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Apple.png}
+  - {name: Ⓜ️ 微软服务, type: select, proxies: [DIRECT, 🎯 节点选择, 🇭🇰 - Auto, 🇺🇸 - Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png}
+
+  # Auto
+  - {name: 🇭🇰 - Auto, type: select, proxies: [🇭🇰 - 自动选择, 🇭🇰 - 自动回退, 🇭🇰 - 负载均衡]}
+  - {name: 🇯🇵 - Auto, type: select, proxies: [🇯🇵 - 自动选择, 🇯🇵 - 自动回退, 🇯🇵 - 负载均衡]}
+  - {name: 🇰🇷 - Auto, type: select, proxies: [🇰🇷 - 自动选择, 🇰🇷 - 自动回退, 🇰🇷 - 负载均衡]}
+  - {name: 🇸🇬 - Auto, type: select, proxies: [🇸🇬 - 自动选择, 🇸🇬 - 自动回退, 🇸🇬 - 负载均衡]}
+  - {name: 🇺🇸 - Auto, type: select, proxies: [🇺🇸 - 自动选择, 🇺🇸 - 自动回退, 🇺🇸 - 负载均衡]}
+  - {name: 🇬🇧 - Auto, type: select, proxies: [🇬🇧 - 自动选择, 🇬🇧 - 自动回退, 🇬🇧 - 负载均衡]}
+  - {name: 🇫🇷 - Auto, type: select, proxies: [🇫🇷 - 自动选择, 🇫🇷 - 自动回退, 🇫🇷 - 负载均衡]}
+  - {name: 🇩🇪 - Auto, type: select, proxies: [🇩🇪 - 自动选择, 🇩🇪 - 自动回退, 🇩🇪 - 负载均衡]}
+  - {name: 🇹🇼 - Auto, type: select, proxies: [🇹🇼 - 自动选择, 🇹🇼 - 自动回退, 🇹🇼 - 负载均衡]}
 
   # 自动选择 - 按地区
-  - {name: 🇭🇰 - 自动选择, <<: *Auto, filter: *FilterHK}
-  - {name: 🇯🇵 - 自动选择, <<: *Auto, filter: *FilterJP}
-  - {name: 🇰🇷 - 自动选择, <<: *Auto, filter: *FilterKR}
-  - {name: 🇸🇬 - 自动选择, <<: *Auto, filter: *FilterSG}
-  - {name: 🇺🇸 - 自动选择, <<: *Auto, filter: *FilterUS}
-  - {name: 🇬🇧 - 自动选择, <<: *Auto, filter: *FilterUK}
-  - {name: 🇫🇷 - 自动选择, <<: *Auto, filter: *FilterFR}
-  - {name: 🇩🇪 - 自动选择, <<: *Auto, filter: *FilterDE}
-  - {name: 🇹🇼 - 自动选择, <<: *Auto, filter: *FilterTW}
+  - {name: 🇭🇰 - 自动选择, <<: *UrlTest, filter: *FilterHK}
+  - {name: 🇯🇵 - 自动选择, <<: *UrlTest, filter: *FilterJP}
+  - {name: 🇰🇷 - 自动选择, <<: *UrlTest, filter: *FilterKR}
+  - {name: 🇸🇬 - 自动选择, <<: *UrlTest, filter: *FilterSG}
+  - {name: 🇺🇸 - 自动选择, <<: *UrlTest, filter: *FilterUS}
+  - {name: 🇬🇧 - 自动选择, <<: *UrlTest, filter: *FilterUK}
+  - {name: 🇫🇷 - 自动选择, <<: *UrlTest, filter: *FilterFR}
+  - {name: 🇩🇪 - 自动选择, <<: *UrlTest, filter: *FilterDE}
+  - {name: 🇹🇼 - 自动选择, <<: *UrlTest, filter: *FilterTW}
+
+  # 自动回退 - 按地区
+  - {name: 🇭🇰 - 自动回退, <<: *FallBack, filter: *FilterHK}
+  - {name: 🇯🇵 - 自动回退, <<: *FallBack, filter: *FilterJP}
+  - {name: 🇰🇷 - 自动回退, <<: *FallBack, filter: *FilterKR}
+  - {name: 🇸🇬 - 自动回退, <<: *FallBack, filter: *FilterSG}
+  - {name: 🇺🇸 - 自动回退, <<: *FallBack, filter: *FilterUS}
+  - {name: 🇬🇧 - 自动回退, <<: *FallBack, filter: *FilterUK}
+  - {name: 🇫🇷 - 自动回退, <<: *FallBack, filter: *FilterFR}
+  - {name: 🇩🇪 - 自动回退, <<: *FallBack, filter: *FilterDE}
+  - {name: 🇹🇼 - 自动回退, <<: *FallBack, filter: *FilterTW}
+
+  # 负载均衡 - 按地区
+  - {name: 🇭🇰 - 负载均衡, <<: *LoadBalance, filter: *FilterHK}
+  - {name: 🇯🇵 - 负载均衡, <<: *LoadBalance, filter: *FilterJP}
+  - {name: 🇰🇷 - 负载均衡, <<: *LoadBalance, filter: *FilterKR}
+  - {name: 🇸🇬 - 负载均衡, <<: *LoadBalance, filter: *FilterSG}
+  - {name: 🇺🇸 - 负载均衡, <<: *LoadBalance, filter: *FilterUS}
+  - {name: 🇬🇧 - 负载均衡, <<: *LoadBalance, filter: *FilterUK}
+  - {name: 🇫🇷 - 负载均衡, <<: *LoadBalance, filter: *FilterFR}
+  - {name: 🇩🇪 - 负载均衡, <<: *LoadBalance, filter: *FilterDE}
+  - {name: 🇹🇼 - 负载均衡, <<: *LoadBalance, filter: *FilterTW}
 
   # 手动选择 - 按地区
   - {name: 🇭🇰 - 手动选择, <<: *Select, filter: *FilterHK}
@@ -158,8 +204,7 @@ proxy-groups:
 
   # 全部节点
   - {name: AllIn - 手动选择, <<: *Select, filter: *FilterAll}
-  - {name: AllIn - 自动选择, <<: *Auto, filter: *FilterAll}
-
+  - {name: AllIn - 自动选择, <<: *UrlTest, filter: *FilterAll}
 
 ### 规则配置
 RuleSet_classical: &RuleSet_classical {type: http, behavior: classical, interval: 43200, format: text, proxy: 🎯 节点选择}
