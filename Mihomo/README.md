@@ -1,4 +1,4 @@
-# 🔥 Mihomo (原Clash) 自用配置
+# 🔥 Mihomo (Clash) 自用配置
 
 ## 📝 说明：
 
@@ -36,7 +36,7 @@
 - 完整教程请参考我的博客：[Mihomo自用配置](https://iyyh.net/archives/3c8e34c1-1493-48bb-9359-fb5f00853500)
 
 ### 🧩 扩展功能：
-- 如使用 **clash-verge-rev** 或 **mihomo-party**，请查看 [Extension_Script](https://github.com/yyhhyyyyyy/selfproxy/tree/main/Mihomo/Extension_Script)
+- 如使用 **[clash-verge-rev](https://github.com/clash-verge-rev/clash-verge-rev)** 或 **~~mihomo-party~~ [sparkle](https://github.com/xishang0128/sparkle)**，请查看 [Extension_Script](https://github.com/yyhhyyyyyy/selfproxy/tree/main/Mihomo/Extension_Script)
 
 ## 🚀 使用指南
 
@@ -101,7 +101,6 @@
 
 - **多订阅配置**适合：
   - 需要多个订阅互为备份的用户
-  - 不同用途使用不同订阅的用户（如国内外分开）
   - 需要对比不同订阅节点性能的用户
 
 ### 2. 如何在多订阅配置中区分不同订阅的节点？
