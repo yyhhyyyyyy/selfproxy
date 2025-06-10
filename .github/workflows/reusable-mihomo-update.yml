@@ -1,0 +1,86 @@
+name: Reusable Mihomo Update Workflow
+
+on:
+  workflow_call:
+    inputs:
+      script_name:
+        description: 'Name of the Python script to run'
+        required: true
+        type: string
+      commit_message:
+        description: 'Commit message for changes'
+        required: true
+        type: string
+      target_path:
+        description: 'Path to add for git commit'
+        required: true
+        type: string
+      timeout_minutes:
+        description: 'Timeout in minutes'
+        required: false
+        type: number
+        default: 10
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ inputs.timeout_minutes }}
+    
+    outputs:
+      has_changes: ${{ steps.changes.outputs.has_changes }}
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: true
+
+      - name: Install dependencies
+        run: pdm install --prod
+
+      - name: Run update script
+        id: update
+        run: |
+          cd Mihomo/auto_update_config
+          pdm run python ${{ inputs.script_name }}
+        continue-on-error: false
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected:"
+            git diff --name-only
+            echo "Diff summary:"
+            git diff --stat
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add ${{ inputs.target_path }}
+          git commit -m "${{ inputs.commit_message }}"
+          git push
+
+      - name: Summary
+        run: |
+          if [[ "${{ steps.changes.outputs.has_changes }}" == "true" ]]; then
+            echo "✅ Successfully updated and committed changes"
+          else
+            echo "ℹ️ No changes were needed"
+          fi
