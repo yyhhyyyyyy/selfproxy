@@ -87,6 +87,8 @@ function overwriteFakeIpFilter (params) {
         "+.+internal",
         "+.+localdomain",
         "+.home.arpa",
+        "+.127.0.0.1.sslip.io",
+        "+.127.atlas.skk.moe",
         "dns.msftncsi.com",
         "*.srv.nintendo.net",
         "*.stun.playstation.net",
@@ -450,7 +452,9 @@ function overwriteNameserverPolicy (params) {
         "*.local": "system",
         "*.internal": "system",
         "*.localdomain": "system",
-        "+.home.arpa": "system"
+        "+.home.arpa": "system",
+        "+.127.0.0.1.sslip.io": "system",
+        "+.127.atlas.skk.moe": "system"
     };
     params.dns["nameserver-policy"] = nameserverPolicy;
 }
@@ -460,6 +464,8 @@ function overwriteHosts (params) {
     const hosts = {
         "dns.alidns.com": ['223.5.5.5', '223.6.6.6', '2400:3200:baba::1', '2400:3200::1'],
         "doh.pub": ['120.53.53.53', '1.12.12.12'],
+        "127.0.0.1.sslip.io": "127.0.0.1",
+        "127.atlas.skk.moe": "127.0.0.1",
         "cdn.jsdelivr.net": "cdn.jsdelivr.net.cdn.cloudflare.net"
     };
     params.hosts = hosts;
