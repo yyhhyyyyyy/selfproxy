@@ -31,17 +31,17 @@ dns:
   fake-ip-range: 198.18.0.1/16
   # fake-ip-filter start
   fake-ip-filter:
-    - +.+m2m
-    - +.$injections.adguard.org
-    - +.$local.adguard.org
-    - +.+bogon
-    - +.+lan
-    - +.+local
-    - +.+internal
-    - +.+localdomain
-    - +.home.arpa
-    - +.127.0.0.1.sslip.io
-    - +.127.atlas.skk.moe
+    - +.m2m
+    - injections.adguard.org
+    - local.adguard.org
+    - +.bogon
+    - +.lan
+    - +.local
+    - +.internal
+    - +.localdomain
+    - home.arpa
+    - 127.0.0.1.sslip.io
+    - 127.atlas.skk.moe
     - dns.msftncsi.com
     - "*.srv.nintendo.net"
     - "*.stun.playstation.net"
