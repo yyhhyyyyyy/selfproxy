@@ -214,6 +214,7 @@ function overwriteNameserverPolicy (params) {
         "+.qq.com.cn": "https://doh.pub/dns-query",
         "*.qqmail.com": "https://doh.pub/dns-query",
         "+.qzone.com": "https://doh.pub/dns-query",
+        "+.tencent-cloud.cn": "https://doh.pub/dns-query",
         "*.tencent-cloud.net": "https://doh.pub/dns-query",
         "*.tencent-cloud.com": "https://doh.pub/dns-query",
         "+.tencent.com": "https://doh.pub/dns-query",
