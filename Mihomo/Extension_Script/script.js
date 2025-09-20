@@ -108,7 +108,9 @@ function overwriteFakeIpFilter (params) {
 function overwriteNameserverPolicy (params) {
     const nameserverPolicy = {
         "dns.alidns.com": "quic://223.5.5.5:853",
-        "doh.pub": "https://1.12.12.12/dns-query",
+        "dot.pub": "119.29.29.29",
+        "doh.pub": "119.29.29.29",
+        "dns.pub": "119.29.29.29",
         "doh.360.cn": "101.198.198.198",
         "+.uc.cn": "quic://dns.alidns.com:853",
         "+.alibaba.com": "quic://dns.alidns.com:853",
@@ -398,6 +400,7 @@ function overwriteNameserverPolicy (params) {
         "*.qh-cdn.com": "https://doh.360.cn/dns-query",
         "+.baomitu.com": "https://doh.360.cn/dns-query",
         "+.qiku.com": "https://doh.360.cn/dns-query",
+        "+.360simg.com": "https://doh.360.cn/dns-query",
         "+.securelogin.com.cn": "system",
         "captive.apple.com": "system",
         "hotspot.cslwifi.com": "system",
@@ -405,7 +408,6 @@ function overwriteNameserverPolicy (params) {
         "injections.adguard.org": "system",
         "local.adguard.org": "system",
         "*.bogon": "system",
-        "*.home": "system",
         "instant.arubanetworks.com": "system",
         "setmeup.arubanetworks.com": "system",
         "router.asus.com": "system",
@@ -430,6 +432,7 @@ function overwriteNameserverPolicy (params) {
         "ntt.setup": "system",
         "pi.hole": "system",
         "*.plex.direct": "system",
+        "*.home": "system",
         "+.10.in-addr.arpa": "system",
         "+.16.172.in-addr.arpa": "system",
         "+.17.172.in-addr.arpa": "system",
@@ -464,7 +467,6 @@ function overwriteNameserverPolicy (params) {
 function overwriteHosts (params) {
     const hosts = {
         "dns.alidns.com": ['223.5.5.5', '223.6.6.6', '2400:3200:baba::1', '2400:3200::1'],
-        "doh.pub": ['120.53.53.53', '1.12.12.12'],
         "127.0.0.1.sslip.io": "127.0.0.1",
         "127.atlas.skk.moe": "127.0.0.1",
         "cdn.jsdelivr.net": "cdn.jsdelivr.net.cdn.cloudflare.net"
