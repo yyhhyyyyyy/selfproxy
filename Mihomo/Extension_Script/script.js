@@ -98,8 +98,14 @@ function overwriteFakeIpFilter (params) {
         "*.stun.twilio.com",
         "stun.syncthing.net",
         "stun.*",
-        "*.sslip.io",
-        "*.nip.io"
+        "127.*.*.*.sslip.io",
+        "127-*-*-*.sslip.io",
+        "*.127.*.*.*.sslip.io",
+        "*-127-*-*-*.sslip.io",
+        "127.*.*.*.nip.io",
+        "127-*-*-*.nip.io",
+        "*.127.*.*.*.nip.io",
+        "*-127-*-*-*.nip.io"
     ];
     params.dns["fake-ip-filter"] = fakeIpFilter;
 }
