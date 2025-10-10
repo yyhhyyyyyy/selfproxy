@@ -380,6 +380,7 @@ function overwriteNameserverPolicy (params) {
         "*.duapp.com": "180.76.76.76",
         "*.antpcdn.com": "180.76.76.76",
         "upos-sz-mirrorbd.bilivideo.com": "180.76.76.76",
+        "upos-sz-mirrorbdb.bilivideo.com": "180.76.76.76",
         "upos-sz-mirrorbos.bilivideo.com": "180.76.76.76",
         "*.qhimg.com": "https://doh.360.cn/dns-query",
         "*.qhimgs.com": "https://doh.360.cn/dns-query",
