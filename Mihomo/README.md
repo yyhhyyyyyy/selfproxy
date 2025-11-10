@@ -33,10 +33,10 @@
 - 不熟悉脚本的用户请手动打开链接 [clash_nameserver_policy](https://ruleset.skk.moe/Internal/clash_nameserver_policy.yaml) 进行对应内容添加
 
 ### 📚 详细说明：
-- 完整教程请参考我的博客：[Mihomo自用配置](https://iyyh.net/archives/3c8e34c1-1493-48bb-9359-fb5f00853500)
+- 完整教程请参考我的博客：[Mihomo自用配置](https://iyyh.net/post/mihomo-self-config/)
 
 ### 🧩 扩展功能：
-- 如使用 **[clash-verge-rev](https://github.com/clash-verge-rev/clash-verge-rev)** 或 **~~mihomo-party~~ [sparkle](https://github.com/xishang0128/sparkle)**，请查看 [Extension_Script](https://github.com/yyhhyyyyyy/selfproxy/tree/main/Mihomo/Extension_Script)
+- 如使用 **[clash-verge-rev](https://github.com/clash-verge-rev/clash-verge-rev)** 或 **~~mihomo-party/clash party~~ [sparkle](https://github.com/xishang0128/sparkle)**，请查看 [Extension_Script](https://github.com/yyhhyyyyyy/selfproxy/tree/main/Mihomo/Extension_Script)
 
 ## 🚀 使用指南
 
