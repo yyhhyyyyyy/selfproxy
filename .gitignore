@@ -1,2 +1,4 @@
 .DS_Store
 .pdm-python
+.venv/
+__pycache__/

@@ -415,7 +415,7 @@ function overwriteRules(params) {
         ...ipRules
     ];
 
-    const ruleProviders = {
+    const baseRuleProviders = {
         // 去广告
         reject_non_ip_no_drop: {
             type: "http",
@@ -659,6 +659,94 @@ function overwriteRules(params) {
             format: "text",
             proxy: "🎯 节点选择"
         }
+    };
+    // 来自上游的 rule-providers
+    const overwriteRuleProviders = {
+        mihomo_nameserver_policy_alibaba: {
+            type: "http",
+            path: "./sukkaw_ruleset/mihomo_nameserver_policy_alibaba.txt",
+            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/alibaba.txt",
+            behavior: "classical",
+            format: "text",
+            interval: 43200
+        },
+        mihomo_nameserver_policy_tencent: {
+            type: "http",
+            path: "./sukkaw_ruleset/mihomo_nameserver_policy_tencent.txt",
+            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/tencent.txt",
+            behavior: "classical",
+            format: "text",
+            interval: 43200
+        },
+        mihomo_nameserver_policy_bilibili: {
+            type: "http",
+            path: "./sukkaw_ruleset/mihomo_nameserver_policy_bilibili.txt",
+            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/bilibili.txt",
+            behavior: "classical",
+            format: "text",
+            interval: 43200
+        },
+        mihomo_nameserver_policy_xiaomi: {
+            type: "http",
+            path: "./sukkaw_ruleset/mihomo_nameserver_policy_xiaomi.txt",
+            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/xiaomi.txt",
+            behavior: "classical",
+            format: "text",
+            interval: 43200
+        },
+        mihomo_nameserver_policy_bytedance: {
+            type: "http",
+            path: "./sukkaw_ruleset/mihomo_nameserver_policy_bytedance.txt",
+            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/bytedance.txt",
+            behavior: "classical",
+            format: "text",
+            interval: 43200
+        },
+        mihomo_nameserver_policy_baidu: {
+            type: "http",
+            path: "./sukkaw_ruleset/mihomo_nameserver_policy_baidu.txt",
+            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/baidu.txt",
+            behavior: "classical",
+            format: "text",
+            interval: 43200
+        },
+        mihomo_nameserver_policy_qihoo360: {
+            type: "http",
+            path: "./sukkaw_ruleset/mihomo_nameserver_policy_qihoo360.txt",
+            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/qihoo360.txt",
+            behavior: "classical",
+            format: "text",
+            interval: 43200
+        },
+        mihomo_nameserver_policy_hotspot_captive_portal: {
+            type: "http",
+            path: "./sukkaw_ruleset/mihomo_nameserver_policy_hotspot_captive_portal.txt",
+            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/hotspot_captive_portal.txt",
+            behavior: "classical",
+            format: "text",
+            interval: 43200
+        },
+        mihomo_nameserver_policy_lan_without_real_ip: {
+            type: "http",
+            path: "./sukkaw_ruleset/mihomo_nameserver_policy_lan_without_real_ip.txt",
+            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/lan_without_real_ip.txt",
+            behavior: "classical",
+            format: "text",
+            interval: 43200
+        },
+        mihomo_nameserver_policy_lan_with_realip: {
+            type: "http",
+            path: "./sukkaw_ruleset/mihomo_nameserver_policy_lan_with_realip.txt",
+            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/lan_with_realip.txt",
+            behavior: "classical",
+            format: "text",
+            interval: 43200
+        }
+    };
+
+    const ruleProviders = {
+        ...baseRuleProviders,
+        ...overwriteRuleProviders
     };
 
     params["rule-providers"] = ruleProviders;
