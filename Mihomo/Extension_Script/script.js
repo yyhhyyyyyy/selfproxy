@@ -83,7 +83,6 @@ function overwriteFakeIpFilter (params) {
         "local.adguard.org",
         "+.bogon",
         "+.lan",
-        "+.local",
         "+.internal",
         "+.localdomain",
         "home.arpa",
