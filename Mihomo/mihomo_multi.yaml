@@ -36,7 +36,6 @@ dns:
     - local.adguard.org
     - +.bogon
     - +.lan
-    - +.local
     - +.internal
     - +.localdomain
     - home.arpa
