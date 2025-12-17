@@ -82,6 +82,7 @@ function overwriteFakeIpFilter (params) {
         "injections.adguard.org",
         "local.adguard.org",
         "+.bogon",
+        "+.local",
         "+.lan",
         "+.internal",
         "+.localdomain",
