@@ -1,135 +1,100 @@
-# 🔥 Mihomo (Clash) 自用配置
+# Mihomo (Clash) 自用配置
 
-## 📝 说明：
+## 项目定位与维护状态
 
-本配置以 **sukkaw_ruleset** 为基础，整体思路沿用 **Sukka** 的设计理念。
+本目录提供长期维护的 Mihomo 配置，整体规则思路参考 sukkaw_ruleset，并保持非 IP 类规则优先。当前提供单订阅与多订阅两种配置形态，方便在不同使用场景下取舍。
 
-### 🧠 核心原则：
-- **非IP类规则集放在IP类规则集前面**
+## 配置文件概览
 
-### 📋 配置文件说明：
-- **Mihomo-single.yaml**: 单订阅配置，适用于只使用一个订阅的用户
-- **Mihomo-multi.yaml**: 多订阅配置，支持同时使用多个订阅并通过前缀区分
+- `mihomo_single.yaml`：单订阅配置，结构更简洁。
+- `mihomo_multi.yaml`：多订阅配置，支持为不同订阅添加前缀区分来源。
 
-#### 单订阅配置特点：
-- 结构简单清晰，易于理解和维护
-- 按地区分类的策略组设计，方便选择不同地区的节点
-- 适合初次使用或只需要一个订阅的用户
+## 设计原则
 
-#### 多订阅配置特点：
-- 支持多个订阅订阅，通过 `additional-prefix` 添加 `[A]`、`[B]` 等前缀区分不同订阅节点
-- 保留按地区分类的策略组，同时提供按订阅+地区组合的策略组
-- 优化的筛选规则，可以根据前缀筛选特定订阅的节点
-- 适合需要多个订阅互为备份或针对不同用途使用不同订阅的用户
+- 非 IP 类规则优先于 IP 类规则。
+- 按地区分组，同时保留应用分组，兼顾可用性与可维护性。
+- 多订阅场景下以可识别的前缀区分节点来源。
 
-### ⚙️ 自动更新机制：
-- 当前 workflow 已支持同时更新单订阅和多订阅配置文件
-- 自动同步上游的 `fake-ip-filter` 更新
-- 由于**部分地区**腾讯DNS使用存在问题(比如我所在区域)，因此**不将** `nameserver-policy` 和 `hosts` 设为自动同步
+## 使用前准备
 
-### 🔧 个性化设置：
-- 如确保所在地区腾讯DNS使用无问题，可自行配置 `nameserver-policy` 和 `hosts`
-- 熟悉Python的用户可参考 auto_update_config 文件夹下的两份py文件进行更新
-- 不熟悉脚本的用户请手动打开链接 [clash_nameserver_policy](https://ruleset.skk.moe/Internal/clash_nameserver_policy.yaml) 进行对应内容添加
+1. 将订阅链接填入 `proxy-providers` 的 `url` 字段。
+2. 按需调整 `interval`、健康检查与测速参数。
+3. 如需自定义 DNS 策略，请根据自身网络环境配置 `nameserver-policy` 与 `hosts`。
 
-### 📚 详细说明：
-- 完整教程请参考我的博客：[Mihomo自用配置](https://iyyh.net/post/mihomo-self-config/)
+## 单订阅配置要点
 
-### 🧩 扩展功能：
-- 如使用 **[clash-verge-rev](https://github.com/clash-verge-rev/clash-verge-rev)** 或 **~~mihomo-party/clash party~~ [sparkle](https://github.com/xishang0128/sparkle)**，请查看 [Extension_Script](https://github.com/yyhhyyyyyy/selfproxy/tree/main/Mihomo/Extension_Script)
+- 结构清晰，适合只使用一个订阅的场景。
+- 地区策略组便于手动选择或自动选择节点。
+- 应用分组可按用途划分流量。
 
-## 🚀 使用指南
+## 多订阅配置要点
 
-### 单订阅配置 (Mihomo-single.yaml)
+- 支持多个订阅同时使用，通过 `additional-prefix` 区分来源。
+- 同时提供按地区与按订阅组合的策略组。
 
-1. **基本设置**：
-   - 将你的订阅链接填入 `proxy-providers` 部分的 `url` 字段
-   - 根据需要调整 `interval` (更新间隔) 和健康检查参数
+### 多订阅模板示例
 
-2. **策略组使用**：
-   - `🎯 节点选择`：主策略组，可选择使用自动选择、手动选择或直连
-   - `手动选择`：按地区手动选择节点
-   - `自动选择`：按地区自动选择延迟最低的节点
-   - 应用分组 (电报、AIGC等)：针对特定应用的策略组
-
-3. **规则使用**：
-   - 规则已按照非IP类和IP类分类，一般无需修改
-   - 如有特殊需求，可在 `rules` 部分添加自定义规则
-
-### 多订阅配置 (Mihomo-multi.yaml)
-
-1. **添加订阅订阅**：
-   ```yaml
-   proxy-providers:
-     Node-1:
-       url: '替换为订阅1订阅链接'
-       <<: *NodeParam
-       path: './proxy_provider/providers-1.yaml'
-       override:
-         additional-prefix: "[A] "
-     Node-2:
-       url: '替换为订阅2订阅链接'
-       <<: *NodeParam
-       path: './proxy_provider/providers-2.yaml'
-       override:
-         additional-prefix: "[B] "
-   ```
-
-2. **节点识别**：
-   - 所有节点会自动添加 `[A]` 或 `[B]` 前缀，方便识别来源
-   - 例如：`[A] 香港01` 表示来自订阅A的香港节点
-
-3. **策略组使用**：
-   - 可以使用按地区分类的策略组，如 `🇭🇰 - 自动选择`
-   - 也可以使用按订阅+地区组合的策略组，如 `订阅A - 香港`
-   - 应用分组会自动包含所有订阅的节点
-
-4. **添加更多订阅**：
-   - 复制 `Node-2` 的配置块，修改为 `Node-3`
-   - 更新 `url`、`path` 和 `additional-prefix` (建议使用 `[C] `)
-   - 添加对应的筛选规则 `FilterNodeC: &FilterNodeC '^(?=.*(\[C\])).*$'`
-   - 添加对应的订阅+地区组合策略组
-
-## ❓ 常见问题
-
-### 1. 单订阅和多订阅配置如何选择？
-
-- **单订阅配置**适合：
-  - 初次使用 Mihomo/Clash 的用户
-  - 只有一个订阅订阅的用户
-  - 追求配置简洁的用户
-
-- **多订阅配置**适合：
-  - 需要多个订阅互为备份的用户
-  - 需要对比不同订阅节点性能的用户
-
-### 2. 如何在多订阅配置中区分不同订阅的节点？
-
-多订阅配置使用 `additional-prefix` 为每个订阅的节点添加前缀标识（如 `[A]`、`[B]`），这样在选择节点时可以清楚地知道节点来自哪个订阅。
-
-### 3. 如何添加自定义规则？
-
-在 `rules` 部分的开头添加自定义规则，格式如下：
 ```yaml
-rules:
-  # 自定义规则
-  - DOMAIN-SUFFIX,example.com,DIRECT
-  - DOMAIN-KEYWORD,google,🎯 节点选择
-
-  ### 非 IP 类规则
-  - RULE-SET,reject_non_ip,REJECT
-  # 其他规则...
+proxy-providers:
+  Node-1:
+    url: "SUBSCRIPTION_URL_1"
+    <<: *NodeParam
+    path: "./proxy_provider/providers-1.yaml"
+    override:
+      additional-prefix: "[A] "
+  Node-2:
+    url: "SUBSCRIPTION_URL_2"
+    <<: *NodeParam
+    path: "./proxy_provider/providers-2.yaml"
+    override:
+      additional-prefix: "[B] "
 ```
 
-🤔 有任何疑问欢迎提 issues
+如需继续添加订阅，请复制一份配置块并更新 `url`、`path`、`additional-prefix` 与相关筛选规则。
 
-## 📚 参考资源：
+## 自动更新说明
 
-- [Sukka](https://github.com/SukkaW/Surge)
-- [Sukka's blog - DNS](https://blog.skk.moe/tags/DNS)
-- [Mihomo Wiki](https://wiki.metacubex.one/)
-- [Rabbit-Spec](https://github.com/Rabbit-Spec/Clash/blob/Master/Yaml/Clash_Pro.yaml)
+- 当前 workflow 支持同步更新单订阅与多订阅配置。
+- `fake-ip-filter` 会同步更新。
+- `nameserver-policy` 与 `hosts` 未做自动同步，请按需人工维护。
 
-## 🙏 感谢：
+脚本入口在 `auto_update_config/`，熟悉 Python 的用户可自行调整流程。不熟悉脚本的用户可直接参考以下链接补全内容：
 
-狐狐🦊，以及所有耐心给予我帮助的朋友们
+- `https://ruleset.skk.moe/Internal/clash_nameserver_policy.yaml`
+
+## 扩展脚本
+
+如使用 clash-verge-rev 或 sparkle，可参考 `Extension_Script/` 的说明与脚本。
+
+## 详细说明
+
+- https://iyyh.net/post/mihomo-self-config/
+
+## 常见问题
+
+### 如何选择单订阅或多订阅配置？
+
+- 单订阅：初次使用或只维护一个订阅。
+- 多订阅：需要订阅冗余或对比节点性能。
+
+### 如何新增自定义规则？
+
+将自定义规则放在 `rules` 顶部，示例如下：
+
+```yaml
+rules:
+  - DOMAIN-SUFFIX,example.com,DIRECT
+  - DOMAIN-KEYWORD,google,PROXY
+  - RULE-SET,reject_non_ip,REJECT
+```
+
+## 参考资源
+
+- https://github.com/SukkaW/Surge
+- https://blog.skk.moe/tags/DNS
+- https://wiki.metacubex.one/
+- https://github.com/Rabbit-Spec/Clash/blob/Master/Yaml/Clash_Pro.yaml
+
+## 致谢
+
+感谢所有给予帮助与建议的朋友。

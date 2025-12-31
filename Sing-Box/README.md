@@ -1,75 +1,61 @@
-# 不再更新该配置！！！
+# Sing-Box 配置（停止维护）
 
-## 自用singbox配置
+本目录保留我使用过的 sing-box 配置与相关材料，已停止维护。以下内容仅作历史参考，可能过期或不再适配最新版本。
 
-维护了一份 **[规则仓库](https://github.com/yyhhyyyyyy/sing-box-ruleset)**，欢迎使用
+## 文件说明
 
-### 1.singbox.json
+- `singbox.json`：fake-ip 版本配置，可能需自行适配。
+- `singbox_realip_myrule.json`：realip 版本配置，配合自用规则仓库。
+- `singbox_realip_myrule_subscribe.json`：历史配置，仅作参考。
+- `tp.js`：配套脚本（用于配合 sub-store 进行分组处理）。
+- `images/`：tp.js 使用示意图。
 
-这份是使用的fake-ip的，但是我现在没有使用了，只保证能导入正常使用。（如果需要修改请自己客制化）
+## 依赖与前置（历史说明）
 
-这份只能配合 **sub-store与tp.js** 进行使用
+- `singbox.json` 与 `singbox_realip_myrule.json` 依赖 sub-store 与 `tp.js`。
+- `singbox_realip_myrule_subscribe.json` 依赖 sing-box-subscribe。
 
----
+## 使用方式（历史说明）
 
-### 2.singbox_realip_myrule.json
+### 1) singbox.json
 
-这份使用的是realip，且搭配我自己的规则仓库
+该配置使用 fake-ip，需配合 sub-store 与 `tp.js` 使用。仅保证可导入与基础使用，建议按需客制化。
 
-这份只能配合 **sub-store与tp.js** 进行使用
+### 2) singbox_realip_myrule.json
 
----
+该配置使用 realip，依赖自用规则仓库，且需配合 sub-store 与 `tp.js` 使用。
 
-### 3.singbox_realip_myrule_subscribe.json （我会重点维护这份配置）
+### 3) singbox_realip_myrule_subscribe.json
 
-推荐使用这一份配置，是我自己在用，所以更新的会比较及时。
+该配置依赖 sing-box-subscribe，并通过参数引用该文件。
 
-这份需要搭配 **[sing-box-subscribe](https://github.com/Toperlock/sing-box-subscribe)** 进行使用
+使用方式示例：
 
-简单说下为什么我后面用 **sing-box-subscribe** 
+```text
+https://sing-box-subscribe.example.com/config/SUBSCRIPTION_URL&file=https://github.com/yyhhyyyyyy/selfproxy/raw/main/Sing-Box/singbox_realip_myrule_subscribe.json
+```
 
-一个是使用tp.js后有一点小问题，比如我 apple 分组里， 可能会含有非国家分组的节点信息（其实就是正则没写好，但是我不管怎么调整，都会有不少问题），最后我就不怎么使用tp.js，改用**sing-box-subscribe**了
+示例域名为占位符，请替换为你实际部署的 sing-box-subscribe 地址。
 
-具体使用方法参考**[sing-box-subscribe使用教程](https://github.com/Toperlock/sing-box-subscribe/blob/main/instructions/README.md)**
+注意事项：
 
-其实就是搭建一下 sing-box-subscribe 然后使用 以下指令
+- `SUBSCRIPTION_URL` 必须是 base64 形式的通用订阅链接。
+- 若订阅不是 base64，请先转换为 base64 并托管到可被访问的地址，再作为 `SUBSCRIPTION_URL` 使用。
 
-例如，原项目的网站 https://sing-box-subscribe.vercel.app，在网站后面添加 `/config/URL_LINK` ，其中 URL_LINK 指的是订阅链接。最后再加上 `&file=https://github.com/yyhhyyyyyy/selfproxy/raw/main/Sing-Box/singbox_realip_myrule_subscribe.json`
+## tp.js
 
-例子：
-`https://xxxxxxx.vercel.app/config/https://xxxxxxsubscribe?token=123456&file=https://github.com/yyhhyyyyyy/selfproxy/raw/main/Sing-Box/singbox_realip_myrule_subscribe.json`
+脚本来源与致谢：
 
-注意事项：这个订阅地址`URL_LINK` 必须是通用订阅，也就是base64的形式的（访问链接打开是一大串字符串而不是节点信息），否则无法使用sing-box-subscribe
+- https://github.com/xream/scripts/blob/main/surge/modules/sub-store-scripts/sing-box/template.js
 
-如果机场的订阅链接打开不是base64，需要自己转换成base64，保存为比如`subscribe.txt`，然后在上传到一个可访问的地址（比如oss上，需要保证vercel能够访问的到）这样就可使用。
+当前版本仅针对自定义分组做了适配。具体用法可参考示意图（`images/`）。
 
+## 规则与参考
 
-
-### 4.tp.js 
-
-感谢 [小一](https://github.com/xream) 提供 [脚本](https://github.com/xream/scripts/blob/main/surge/modules/sub-store-scripts/sing-box/template.js) 
-
-本项目修改的紧紧只是使用自己的分组的情形
-
-这份配合 [sub-store](https://github.com/sub-store-org/Sub-Store) 可以实现自动**国家分组**
-
-
-
-### 5.tp.js使用方法
-
-![alt text](./images/image.png)
-
-
-![alt text](./images/image-1.png)
-
-
-
-参考配置文件来源：
-
-[不良林](https://bulianglin.com/archives/singbox.html)
-
-[xishang0128](https://github.com/xishang0128/sub-store-template/blob/main/sing-box-resolve.json)
-
-[官方文档](https://sing-box.sagernet.org/zh)
-
-[chika0801](https://github.com/chika0801/sing-box-examples/blob/main/Tun/config_client_windows_local_dns.json)
+- 规则仓库：https://github.com/yyhhyyyyyy/sing-box-ruleset
+- sing-box-subscribe：https://github.com/Toperlock/sing-box-subscribe
+- 参考配置来源：
+  - https://bulianglin.com/archives/singbox.html
+  - https://github.com/xishang0128/sub-store-template/blob/main/sing-box-resolve.json
+  - https://sing-box.sagernet.org/zh
+  - https://github.com/chika0801/sing-box-examples/blob/main/Tun/config_client_windows_local_dns.json

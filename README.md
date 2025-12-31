@@ -1,42 +1,48 @@
-# 🚀 自用代理配置
+# 自用代理配置
 
-## 📝 项目介绍
+## 项目定位
 
-- 整理并长期维护我自用的代理配置与实践说明，覆盖 Mihomo（Clash）与 Surge；Sing-Box 仅保留历史版本（停止维护）。
-- 目标：开箱即用、结构清晰、可按需裁剪；规则思路参考 sukkaw_ruleset，持续迭代优化。
+本仓库集中整理与长期维护我的代理配置与实践说明，重点覆盖 Mihomo（Clash）与 Surge。Sing-Box 已停止维护，仅保留历史配置与参考材料。
 
-## ✨ 支持的代理内核/工具
+## 维护状态
 
-### 🔥 Mihomo（Clash）
+- Surge：持续维护，提供 macOS 与 iOS 配置。
+- Mihomo：持续维护，提供单订阅与多订阅版本。
+- Sing-Box：不再维护。
 
-### 📊 Surge
+## 目录与文件说明
 
-### 🗃️ Sing-Box（不再更新）
+- `Mihomo/`
+  - `mihomo_single.yaml`：单订阅配置。
+  - `mihomo_multi.yaml`：多订阅配置（节点前缀区分）。
+  - `auto_update_config/`：自动更新相关脚本。
+  - `Extension_Script/`：扩展脚本与用法说明。
+- `Surge/`
+  - `Surge-Mac.conf`：macOS 配置。
+  - `Surge-iOS.conf`：iOS 配置。
+  - `README.md`：使用思路与文章入口。
+- `Sing-Box/`
+  - 历史配置与参考材料（停止维护）。
 
-## 🔧 使用方法
+## 使用指引
 
-请根据你使用的代理工具，进入对应的目录查看详细教程和配置文件：
+1. 选择你的代理工具并进入对应目录：`Mihomo/`、`Surge/`、`Sing-Box/`。
+2. 按目录内 `README.md` 的说明完成配置与使用。
 
-1. 对于 Mihomo 用户 → 进入 `/Mihomo` 目录
-2. 对于 Surge 用户 → 进入 `/Surge` 目录
-3. 对于 Sing-Box 用户 → 进入 `/Sing-Box` 目录（仅作参考）
+## 规则与更新说明
 
-## 🤝 帮助与支持
+- 规则思路参考 sukkaw_ruleset，保持非 IP 规则优先。
+- Mihomo `auto_update_config/` 提供自动同步思路与脚本入口。
+- DNS 与 `nameserver-policy` 的选择具有地域差异，请按自身环境调整。
 
-如果在使用过程中遇到任何问题，欢迎提交 Issue！
+## 免责声明
 
-## ⚠️ 免责声明
+本项目仅供学习与技术交流使用，请遵守当地法律法规，不得用于非法用途。
 
-本项目仅供学习和技术交流使用，请遵守当地法律法规，不得用于非法用途。
+## 交流
 
-## ✈️ 交流
+TG：频道 https://t.me/iyyhchannel
 
-TG： [Channel](https://t.me/iyyhchannel)
+## Star 历史
 
----
-
-💻 希望这些配置能让你的体验更舒心！
-
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=yyhhyyyyyy/selfproxy&type=Date)](https://www.star-history.com/#yyhhyyyyyy/selfproxy&Date)
+[![Star 历史图](https://api.star-history.com/svg?repos=yyhhyyyyyy/selfproxy&type=Date)](https://www.star-history.com/#yyhhyyyyyy/selfproxy&Date)
