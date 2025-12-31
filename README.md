@@ -43,6 +43,6 @@
 
 TG：频道 https://t.me/iyyhchannel
 
-## Star 历史
+## Star History
 
-[![Star 历史图](https://api.star-history.com/svg?repos=yyhhyyyyyy/selfproxy&type=Date)](https://www.star-history.com/#yyhhyyyyyy/selfproxy&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=yyhhyyyyyy/selfproxy&type=date&legend=top-left)](https://www.star-history.com/#yyhhyyyyyy/selfproxy&type=date&legend=top-left)
