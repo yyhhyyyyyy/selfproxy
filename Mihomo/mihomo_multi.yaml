@@ -35,8 +35,8 @@ dns:
     - injections.adguard.org
     - local.adguard.org
     - +.bogon
-    - +.lan
     - +.local
+    - +.lan
     - +.internal
     - +.localdomain
     - home.arpa
