@@ -358,9 +358,9 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
+  - RULE-SET,reject_non_ip_drop,REJECT-DROP
   - RULE-SET,reject_non_ip,REJECT
   - RULE-SET,reject_domainset,REJECT
-  - RULE-SET,reject_non_ip_drop,REJECT-DROP
   - RULE-SET,reject_non_ip_no_drop,REJECT
   - RULE-SET,cdn_domainset,🎯 节点选择
   - RULE-SET,cdn_non_ip,🎯 节点选择
