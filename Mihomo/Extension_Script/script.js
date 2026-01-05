@@ -362,9 +362,9 @@ function overwriteProxyGroups(params) {
 // 覆写规则
 function overwriteRules(params) {
     const adNonipRules = [
+        "RULE-SET,reject_non_ip_drop,REJECT-DROP",
         "RULE-SET,reject_non_ip,REJECT",
         "RULE-SET,reject_domainset,REJECT",
-        "RULE-SET,reject_non_ip_drop,REJECT-DROP",
         "RULE-SET,reject_non_ip_no_drop,REJECT"
     ];
 
