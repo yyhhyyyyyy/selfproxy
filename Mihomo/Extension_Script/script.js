@@ -416,52 +416,6 @@ function overwriteRules(params) {
     ];
 
     const baseRuleProviders = {
-        // 去广告
-        reject_non_ip_no_drop: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/non_ip/reject-no-drop.txt",
-            path: "./rule_set/sukkaw_ruleset/reject_non_ip_no_drop.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
-        reject_non_ip_drop: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/non_ip/reject-drop.txt",
-            path: "./rule_set/sukkaw_ruleset/reject_non_ip_drop.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
-        reject_non_ip: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/non_ip/reject.txt",
-            path: "./rule_set/sukkaw_ruleset/reject_non_ip.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
-        reject_domainset: {
-            type: "http",
-            behavior: "domain",
-            url: "https://ruleset.skk.moe/Clash/domainset/reject.txt",
-            path: "./rule_set/sukkaw_ruleset/reject_domainset.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
-        reject_ip: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/ip/reject.txt",
-            path: "./rule_set/sukkaw_ruleset/reject_ip.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
         // 静态cdn
         cdn_domainset: {
             type: "http",

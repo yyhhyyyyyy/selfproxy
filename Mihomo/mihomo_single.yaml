@@ -213,31 +213,6 @@ RuleSet_ipcidr: &RuleSet_ipcidr {type: http, behavior: ipcidr, interval: 43200, 
 
 # 订阅规则
 rule-providers:
-  reject_non_ip_no_drop:
-    <<: *RuleSet_classical
-    url: 'https://ruleset.skk.moe/Clash/non_ip/reject-no-drop.txt'
-    path: './rule_set/sukkaw_ruleset/reject_non_ip_no_drop.txt'
-
-  reject_non_ip_drop:
-    <<: *RuleSet_classical
-    url: https://ruleset.skk.moe/Clash/non_ip/reject-drop.txt
-    path: ./rule_set/sukkaw_ruleset/reject_non_ip_drop.txt
-
-  reject_non_ip:
-    <<: *RuleSet_classical
-    url: https://ruleset.skk.moe/Clash/non_ip/reject.txt
-    path: ./rule_set/sukkaw_ruleset/reject_non_ip.txt
-
-  reject_domainset:
-    <<: *RuleSet_domain
-    url: https://ruleset.skk.moe/Clash/domainset/reject.txt
-    path: ./rule_set/sukkaw_ruleset/reject_domainset.txt
-
-  reject_ip:
-    <<: *RuleSet_classical
-    url: https://ruleset.skk.moe/Clash/ip/reject.txt
-    path: ./rule_set/sukkaw_ruleset/reject_ip.txt
-
   cdn_domainset:
     <<: *RuleSet_domain
     url: https://ruleset.skk.moe/Clash/domainset/cdn.txt
