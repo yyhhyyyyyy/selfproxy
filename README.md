@@ -43,6 +43,14 @@
 
 TG：频道 https://t.me/iyyhchannel
 
+---
+
+## 自用机场（AFF）
+
+- 自己长期使用的机场，可按需订阅。[FlowerCloud](https://s.iyyh.net/flower)
+
+---
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=yyhhyyyyyy/selfproxy&type=date&legend=top-left)](https://www.star-history.com/#yyhhyyyyyy/selfproxy&type=date&legend=top-left)

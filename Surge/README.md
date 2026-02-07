@@ -15,3 +15,11 @@
 
 - macOS：https://raw.githubusercontent.com/yyhhyyyyyy/selfproxy/refs/heads/main/Surge/Surge-Mac.conf
 - iOS：https://raw.githubusercontent.com/yyhhyyyyyy/selfproxy/refs/heads/main/Surge/Surge-iOS.conf
+
+---
+
+## 自用机场（AFF）
+
+- 自己长期使用的机场，可按需订阅。[FlowerCloud](https://s.iyyh.net/flower)
+
+---

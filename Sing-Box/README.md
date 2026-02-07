@@ -59,3 +59,11 @@ https://sing-box-subscribe.example.com/config/SUBSCRIPTION_URL&file=https://gith
   - https://github.com/xishang0128/sub-store-template/blob/main/sing-box-resolve.json
   - https://sing-box.sagernet.org/zh
   - https://github.com/chika0801/sing-box-examples/blob/main/Tun/config_client_windows_local_dns.json
+
+---
+
+## 自用机场（AFF）
+
+- 自己长期使用的机场，可按需订阅。[FlowerCloud](https://s.iyyh.net/flower)
+
+---

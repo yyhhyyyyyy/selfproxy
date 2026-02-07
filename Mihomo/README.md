@@ -98,3 +98,11 @@ rules:
 ## 致谢
 
 感谢所有给予帮助与建议的朋友。
+
+---
+
+## 自用机场（AFF）
+
+- 自己长期使用的机场，可按需订阅。[FlowerCloud](https://s.iyyh.net/flower)
+
+---
