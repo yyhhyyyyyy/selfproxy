@@ -85,7 +85,7 @@ proxy-providers:
 rules:
   - DOMAIN-SUFFIX,example.com,DIRECT
   - DOMAIN-KEYWORD,google,PROXY
-  - RULE-SET,reject_non_ip,REJECT
+  - RULE-SET,ai,US
 ```
 
 ## 参考资源
