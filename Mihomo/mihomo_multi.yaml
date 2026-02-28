@@ -1,5 +1,5 @@
 # yyhhyyyyyy的Mihomo多节点配置
-# Date：2025-06-04
+# Date：2026-02-28
 
 ### 全局配置
 mixed-port: 7897
@@ -15,7 +15,7 @@ global-client-fingerprint: chrome
 ### 如果使用的是裸核，需要将下面的注释去掉，方便ui界面的使用
 # external-controller: 0.0.0.0:9988
 # external-ui: ui
-# external-ui-url: 'https://mirror.ghproxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
+# external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
 # secret: "yyhhyyyyyy"
 
 profile:
@@ -116,19 +116,17 @@ proxy-providers:
       additional-prefix: "[B] "
   # 如果还有其他订阅，可以继续添加
 
+# 单节点(如果你是自建节点，那么请直接在下面的proxies里添加节点配置，具体节点写法请参考 mihomo 官方文档)
+# proxies:
+#   - {name: "示例节点", type: ss, server: example.com, port: 443, cipher: aes-256-gcm, password: "password", udp: true}
+
 # 节点筛选
 # 按地区筛选
-FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|\b(HK|Hong)(\d+)?\b))(?!.*((?i)回国|校园|网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
-FilterTW: &FilterTW '^(?=.*((?i)🇹🇼|台湾|\b(TW|Tai|Taiwan)(\d+)?\b))(?!.*((?i)回国|校园|网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
-FilterJP: &FilterJP '^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|\b(JP|Japan)(\d+)?\b))(?!.*((?i)回国|校园|网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
-FilterKR: &FilterKR '^(?=.*((?i)🇰🇷|韩国|韓|首尔|\b(KR|Korea)(\d+)?\b))(?!.*((?i)回国|校园|网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
-FilterSG: &FilterSG '^(?=.*((?i)🇸🇬|新加坡|狮|\b(SG|Singapore)(\d+)?\b))(?!.*((?i)回国|校园|网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
-FilterUS: &FilterUS '^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|\b(US|United States)(\d+)?\b))(?!.*((?i)回国|校园|网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
-FilterUK: &FilterUK '^(?=.*((?i)🇬🇧|英国|伦敦|\b(UK|United Kingdom)(\d+)?\b))(?!.*((?i)回国|校园|网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
-FilterFR: &FilterFR '^(?=.*((?i)🇫🇷|法国|\b(FR|France)(\d+)?\b))(?!.*((?i)回国|校园|网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
-FilterDE: &FilterDE '^(?=.*((?i)🇩🇪|德国|\b(DE|Germany)(\d+)?\b))(?!.*((?i)回国|校园|网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点)).*$'
-FilterOthers: &FilterOthers '^(?!.*(🇭🇰|HK|Hong|香港|🇹🇼|TW|Taiwan|Wan|🇯🇵|JP|Japan|日本|🇸🇬|SG|Singapore|狮城|🇺🇸|US|United States|America|美国|🇩🇪|DE|Germany|德国|🇬🇧|UK|United Kingdom|英国|🇰🇷|KR|Korea|韩国|韓|🇫🇷|FR|France|法国)).*$'
-FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
+FilterHK: &FilterHK '(🇭🇰|香港|[Hh][Kk]|Hong\s*Kong)'
+FilterTW: &FilterTW '(🇹🇼|台[湾灣]|[Tt][Ww]|Taiwan)'
+FilterUS: &FilterUS '(🇺🇸|美[国國]|America|United\s*States|[Uu][Ss])'
+FilterJP: &FilterJP '(🇯🇵|日本|东京|大阪|[Jj][Pp]|Japan)'
+FilterSG: &FilterSG '(🇸🇬|新加坡|狮城|[Ss][Gg]|Singapore)'
 
 ### 策略组基础配置
 # 手动选择
@@ -143,82 +141,59 @@ LoadBalance: &LoadBalance {type: load-balance, url: 'http://connectivitycheck.pl
 # 策略组
 proxy-groups:
   # 主选择组
-  - {name: 🎯 节点选择, type: select, proxies: [智能选择, 手动选择, DIRECT], url: http://connectivitycheck.platform.hicloud.com/generate_204, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
+  - {name: 🎯节点选择, type: select, proxies: [智能选择, 手动选择, 全部节点, DIRECT], url: http://connectivitycheck.platform.hicloud.com/generate_204, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png}
 
   # 手动/Auto
-  - {name: 手动选择, type: select, proxies: [🇭🇰 - 手动选择, 🇯🇵 - 手动选择, 🇰🇷 - 手动选择, 🇸🇬 - 手动选择, 🇺🇸 - 手动选择, 🇬🇧 - 手动选择, 🇫🇷 - 手动选择, 🇩🇪 - 手动选择, 🇹🇼 - 手动选择, Others - 手动选择], url: http://connectivitycheck.platform.hicloud.com/generate_204, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Cylink.png}
-  - {name: 智能选择, type: select, proxies: [🇭🇰 - Auto, 🇯🇵 - Auto, 🇰🇷 - Auto, 🇸🇬 - Auto, 🇺🇸 - Auto, 🇬🇧 - Auto, 🇫🇷 - Auto, 🇩🇪 - Auto, 🇹🇼 - Auto], url: http://connectivitycheck.platform.hicloud.com/generate_204, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png}
+  - {name: 手动选择, type: select, proxies: [🇭🇰-手动选择, 🇯🇵-手动选择, 🇸🇬-手动选择, 🇺🇸-手动选择, 🇹🇼-手动选择], url: http://connectivitycheck.platform.hicloud.com/generate_204, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Cylink.png}
+  - {name: 智能选择, type: select, proxies: [🇭🇰-Auto, 🇯🇵-Auto, 🇸🇬-Auto, 🇺🇸-Auto, 🇹🇼-Auto], url: http://connectivitycheck.platform.hicloud.com/generate_204, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png}
 
   # 应用分组
-  - {name: ✈️ 电报信息, type: select, proxies: [🎯 节点选择, 🇭🇰 - Auto, 🇯🇵 - Auto, 🇸🇬 - Auto, 🇺🇸 - Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png}
-  - {name: 🤖 AIGC, type: select, proxies: [🇺🇸 - Auto, 🎯 节点选择, 🇭🇰 - Auto, 🇯🇵 - Auto, 🇸🇬 - Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png}
-  - {name: 🍎 苹果服务, type: select, proxies: [DIRECT, 🎯 节点选择, 🇭🇰 - Auto, 🇺🇸 - Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Apple.png}
-  - {name: Ⓜ️ 微软服务, type: select, proxies: [DIRECT, 🎯 节点选择, 🇭🇰 - Auto, 🇺🇸 - Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png}
+  - {name: ✈️电报信息, type: select, proxies: [🎯节点选择, 🇭🇰-Auto, 🇯🇵-Auto, 🇸🇬-Auto, 🇺🇸-Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png}
+  - {name: 🤖AIGC, type: select, proxies: [🇺🇸-Auto, 🎯节点选择, 🇭🇰-Auto, 🇯🇵-Auto, 🇸🇬-Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png}
+  - {name: 🍎苹果服务, type: select, proxies: [DIRECT, 🎯节点选择, 🇭🇰-Auto, 🇺🇸-Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Apple.png}
+  - {name: Ⓜ️微软服务, type: select, proxies: [DIRECT, 🎯节点选择, 🇭🇰-Auto, 🇺🇸-Auto], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png}
 
   # Auto
-  - {name: 🇭🇰 - Auto, type: select, proxies: [🇭🇰 - 自动选择, 🇭🇰 - 自动回退, 🇭🇰 - 负载均衡]}
-  - {name: 🇯🇵 - Auto, type: select, proxies: [🇯🇵 - 自动选择, 🇯🇵 - 自动回退, 🇯🇵 - 负载均衡]}
-  - {name: 🇰🇷 - Auto, type: select, proxies: [🇰🇷 - 自动选择, 🇰🇷 - 自动回退, 🇰🇷 - 负载均衡]}
-  - {name: 🇸🇬 - Auto, type: select, proxies: [🇸🇬 - 自动选择, 🇸🇬 - 自动回退, 🇸🇬 - 负载均衡]}
-  - {name: 🇺🇸 - Auto, type: select, proxies: [🇺🇸 - 自动选择, 🇺🇸 - 自动回退, 🇺🇸 - 负载均衡]}
-  - {name: 🇬🇧 - Auto, type: select, proxies: [🇬🇧 - 自动选择, 🇬🇧 - 自动回退, 🇬🇧 - 负载均衡]}
-  - {name: 🇫🇷 - Auto, type: select, proxies: [🇫🇷 - 自动选择, 🇫🇷 - 自动回退, 🇫🇷 - 负载均衡]}
-  - {name: 🇩🇪 - Auto, type: select, proxies: [🇩🇪 - 自动选择, 🇩🇪 - 自动回退, 🇩🇪 - 负载均衡]}
-  - {name: 🇹🇼 - Auto, type: select, proxies: [🇹🇼 - 自动选择, 🇹🇼 - 自动回退, 🇹🇼 - 负载均衡]}
+  - {name: 🇭🇰-Auto, type: select, proxies: [🇭🇰-自动选择, 🇭🇰-自动回退, 🇭🇰-负载均衡]}
+  - {name: 🇯🇵-Auto, type: select, proxies: [🇯🇵-自动选择, 🇯🇵-自动回退, 🇯🇵-负载均衡]}
+  - {name: 🇸🇬-Auto, type: select, proxies: [🇸🇬-自动选择, 🇸🇬-自动回退, 🇸🇬-负载均衡]}
+  - {name: 🇺🇸-Auto, type: select, proxies: [🇺🇸-自动选择, 🇺🇸-自动回退, 🇺🇸-负载均衡]}
+  - {name: 🇹🇼-Auto, type: select, proxies: [🇹🇼-自动选择, 🇹🇼-自动回退, 🇹🇼-负载均衡]}
 
   # 自动选择 - 按地区
-  - {name: 🇭🇰 - 自动选择, <<: *UrlTest, filter: *FilterHK}
-  - {name: 🇯🇵 - 自动选择, <<: *UrlTest, filter: *FilterJP}
-  - {name: 🇰🇷 - 自动选择, <<: *UrlTest, filter: *FilterKR}
-  - {name: 🇸🇬 - 自动选择, <<: *UrlTest, filter: *FilterSG}
-  - {name: 🇺🇸 - 自动选择, <<: *UrlTest, filter: *FilterUS}
-  - {name: 🇬🇧 - 自动选择, <<: *UrlTest, filter: *FilterUK}
-  - {name: 🇫🇷 - 自动选择, <<: *UrlTest, filter: *FilterFR}
-  - {name: 🇩🇪 - 自动选择, <<: *UrlTest, filter: *FilterDE}
-  - {name: 🇹🇼 - 自动选择, <<: *UrlTest, filter: *FilterTW}
+  - {name: 🇭🇰-自动选择, <<: *UrlTest, filter: *FilterHK}
+  - {name: 🇯🇵-自动选择, <<: *UrlTest, filter: *FilterJP}
+  - {name: 🇸🇬-自动选择, <<: *UrlTest, filter: *FilterSG}
+  - {name: 🇺🇸-自动选择, <<: *UrlTest, filter: *FilterUS}
+  - {name: 🇹🇼-自动选择, <<: *UrlTest, filter: *FilterTW}
 
   # 自动回退 - 按地区
-  - {name: 🇭🇰 - 自动回退, <<: *FallBack, filter: *FilterHK}
-  - {name: 🇯🇵 - 自动回退, <<: *FallBack, filter: *FilterJP}
-  - {name: 🇰🇷 - 自动回退, <<: *FallBack, filter: *FilterKR}
-  - {name: 🇸🇬 - 自动回退, <<: *FallBack, filter: *FilterSG}
-  - {name: 🇺🇸 - 自动回退, <<: *FallBack, filter: *FilterUS}
-  - {name: 🇬🇧 - 自动回退, <<: *FallBack, filter: *FilterUK}
-  - {name: 🇫🇷 - 自动回退, <<: *FallBack, filter: *FilterFR}
-  - {name: 🇩🇪 - 自动回退, <<: *FallBack, filter: *FilterDE}
-  - {name: 🇹🇼 - 自动回退, <<: *FallBack, filter: *FilterTW}
+  - {name: 🇭🇰-自动回退, <<: *FallBack, filter: *FilterHK}
+  - {name: 🇯🇵-自动回退, <<: *FallBack, filter: *FilterJP}
+  - {name: 🇸🇬-自动回退, <<: *FallBack, filter: *FilterSG}
+  - {name: 🇺🇸-自动回退, <<: *FallBack, filter: *FilterUS}
+  - {name: 🇹🇼-自动回退, <<: *FallBack, filter: *FilterTW}
 
   # 负载均衡 - 按地区
-  - {name: 🇭🇰 - 负载均衡, <<: *LoadBalance, filter: *FilterHK}
-  - {name: 🇯🇵 - 负载均衡, <<: *LoadBalance, filter: *FilterJP}
-  - {name: 🇰🇷 - 负载均衡, <<: *LoadBalance, filter: *FilterKR}
-  - {name: 🇸🇬 - 负载均衡, <<: *LoadBalance, filter: *FilterSG}
-  - {name: 🇺🇸 - 负载均衡, <<: *LoadBalance, filter: *FilterUS}
-  - {name: 🇬🇧 - 负载均衡, <<: *LoadBalance, filter: *FilterUK}
-  - {name: 🇫🇷 - 负载均衡, <<: *LoadBalance, filter: *FilterFR}
-  - {name: 🇩🇪 - 负载均衡, <<: *LoadBalance, filter: *FilterDE}
-  - {name: 🇹🇼 - 负载均衡, <<: *LoadBalance, filter: *FilterTW}
+  - {name: 🇭🇰-负载均衡, <<: *LoadBalance, filter: *FilterHK}
+  - {name: 🇯🇵-负载均衡, <<: *LoadBalance, filter: *FilterJP}
+  - {name: 🇸🇬-负载均衡, <<: *LoadBalance, filter: *FilterSG}
+  - {name: 🇺🇸-负载均衡, <<: *LoadBalance, filter: *FilterUS}
+  - {name: 🇹🇼-负载均衡, <<: *LoadBalance, filter: *FilterTW}
 
   # 手动选择 - 按地区
-  - {name: 🇭🇰 - 手动选择, <<: *Select, filter: *FilterHK}
-  - {name: 🇯🇵 - 手动选择, <<: *Select, filter: *FilterJP}
-  - {name: 🇰🇷 - 手动选择, <<: *Select, filter: *FilterKR}
-  - {name: 🇸🇬 - 手动选择, <<: *Select, filter: *FilterSG}
-  - {name: 🇺🇸 - 手动选择, <<: *Select, filter: *FilterUS}
-  - {name: 🇬🇧 - 手动选择, <<: *Select, filter: *FilterUK}
-  - {name: 🇫🇷 - 手动选择, <<: *Select, filter: *FilterFR}
-  - {name: 🇩🇪 - 手动选择, <<: *Select, filter: *FilterDE}
-  - {name: 🇹🇼 - 手动选择, <<: *Select, filter: *FilterTW}
-  - {name: Others - 手动选择, <<: *Select, filter: *FilterOthers}
+  - {name: 🇭🇰-手动选择, <<: *Select, filter: *FilterHK}
+  - {name: 🇯🇵-手动选择, <<: *Select, filter: *FilterJP}
+  - {name: 🇸🇬-手动选择, <<: *Select, filter: *FilterSG}
+  - {name: 🇺🇸-手动选择, <<: *Select, filter: *FilterUS}
+  - {name: 🇹🇼-手动选择, <<: *Select, filter: *FilterTW}
 
-  # 全部节点
-  - {name: AllIn - 手动选择, <<: *Select, filter: *FilterAll}
-  - {name: AllIn - 自动选择, <<: *UrlTest, filter: *FilterAll}
+  - {name: 全部节点, <<: *Select}
 
 ### 规则配置
-RuleSet_classical: &RuleSet_classical {type: http, behavior: classical, interval: 43200, format: text, proxy: 🎯 节点选择}
-RuleSet_domain: &RuleSet_domain {type: http, behavior: domain, interval: 43200, format: text, proxy: 🎯 节点选择}
-RuleSet_ipcidr: &RuleSet_ipcidr {type: http, behavior: ipcidr, interval: 43200, format: text, proxy: 🎯 节点选择}
+RuleSet_classical: &RuleSet_classical {type: http, behavior: classical, interval: 43200, format: text, proxy: 🎯节点选择}
+RuleSet_domain: &RuleSet_domain {type: http, behavior: domain, interval: 43200, format: text, proxy: 🎯节点选择}
+RuleSet_ipcidr: &RuleSet_ipcidr {type: http, behavior: ipcidr, interval: 43200, format: text, proxy: 🎯节点选择}
 
 # 订阅规则
 rule-providers:
@@ -232,7 +207,6 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/cdn.txt
     path: ./rule_set/sukkaw_ruleset/cdn_non_ip.txt
 
-  # 所有流媒体（包括上述所有流媒体）
   stream_non_ip:
     <<: *RuleSet_classical
     url: https://ruleset.skk.moe/Clash/non_ip/stream.txt
@@ -283,7 +257,6 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/microsoft.txt
     path: ./rule_set/sukkaw_ruleset/microsoft_non_ip.txt
 
-  # 软件更新、操作系统等大文件下载
   download_domainset:
     <<: *RuleSet_domain
     url: https://ruleset.skk.moe/Clash/domainset/download.txt
@@ -294,7 +267,6 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/download.txt
     path: ./rule_set/sukkaw_ruleset/download_non_ip.txt
 
-  # 内网域名和局域网 IP
   lan_non_ip:
     <<: *RuleSet_classical
     url: https://ruleset.skk.moe/Clash/non_ip/lan.txt
@@ -319,7 +291,7 @@ rule-providers:
     <<: *RuleSet_classical
     url: https://ruleset.skk.moe/Clash/non_ip/global.txt
     path: ./rule_set/sukkaw_ruleset/global_non_ip.txt
-    
+
   domestic_ip:
     <<: *RuleSet_classical
     url: https://ruleset.skk.moe/Clash/ip/domestic.txt
@@ -333,27 +305,27 @@ rule-providers:
 # 分流规则
 rules:
   ### 非 IP 类规则
-  - RULE-SET,cdn_domainset,🎯 节点选择
-  - RULE-SET,cdn_non_ip,🎯 节点选择
-  - RULE-SET,stream_non_ip,🇺🇸 - 自动选择
-  - RULE-SET,telegram_non_ip,✈️ 电报信息
+  - RULE-SET,cdn_domainset,🎯节点选择
+  - RULE-SET,cdn_non_ip,🎯节点选择
+  - RULE-SET,stream_non_ip,🇺🇸-自动选择
+  - RULE-SET,telegram_non_ip,✈️电报信息
   - RULE-SET,apple_cdn,DIRECT
-  - RULE-SET,download_domainset,🎯 节点选择
-  - RULE-SET,download_non_ip,🎯 节点选择
+  - RULE-SET,download_domainset,🎯节点选择
+  - RULE-SET,download_non_ip,🎯节点选择
   - RULE-SET,microsoft_cdn_non_ip,DIRECT
   - RULE-SET,apple_cn_non_ip,DIRECT
-  - RULE-SET,apple_services,🍎 苹果服务
-  - RULE-SET,microsoft_non_ip,Ⓜ️ 微软服务
-  - RULE-SET,ai_non_ip,🤖 AIGC
-  - RULE-SET,global_non_ip,🎯 节点选择
+  - RULE-SET,apple_services,🍎苹果服务
+  - RULE-SET,microsoft_non_ip,Ⓜ️微软服务
+  - RULE-SET,ai_non_ip,🤖AIGC
+  - RULE-SET,global_non_ip,🎯节点选择
   - RULE-SET,domestic_non_ip,DIRECT
   - RULE-SET,direct_non_ip,DIRECT
   - RULE-SET,lan_non_ip,DIRECT
 
   ### IP 类规则
-  - RULE-SET,telegram_ip,✈️ 电报信息
-  - RULE-SET,stream_ip,🇺🇸 - 自动选择
+  - RULE-SET,telegram_ip,✈️电报信息
+  - RULE-SET,stream_ip,🇺🇸-自动选择
   - RULE-SET,lan_ip,DIRECT
   - RULE-SET,domestic_ip,DIRECT
   - RULE-SET,china_ip,DIRECT
-  - MATCH,🎯 节点选择
+  - MATCH,🎯节点选择
