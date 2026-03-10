@@ -98,6 +98,7 @@ function overwriteFakeIpFilter (params) {
         "*.stun.twilio.com",
         "stun.syncthing.net",
         "stun.*",
+        "lancache.steamcontent.com",
         "127.*.*.*.sslip.io",
         "127-*-*-*.sslip.io",
         "*.127.*.*.*.sslip.io",
