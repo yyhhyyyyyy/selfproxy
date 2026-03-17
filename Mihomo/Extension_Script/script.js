@@ -87,8 +87,6 @@ function overwriteFakeIpFilter (params) {
         "+.internal",
         "+.localdomain",
         "home.arpa",
-        "127.0.0.1.sslip.io",
-        "127.atlas.skk.moe",
         "dns.msftncsi.com",
         "*.srv.nintendo.net",
         "*.stun.playstation.net",
@@ -106,7 +104,8 @@ function overwriteFakeIpFilter (params) {
         "127.*.*.*.nip.io",
         "127-*-*-*.nip.io",
         "*.127.*.*.*.nip.io",
-        "*-127-*-*-*.nip.io"
+        "*-127-*-*-*.nip.io",
+        "127.atlas.skk.moe"
     ];
     params.dns["fake-ip-filter"] = fakeIpFilter;
 }
@@ -119,7 +118,7 @@ function overwriteNameserverPolicy (params) {
         "doh.pub": "119.29.29.29",
         "dns.pub": "119.29.29.29",
         "doh.360.cn": "101.198.198.198",
-        "rule-set:mihomo_nameserver_policy_alibaba": "quic://dns.alidns.com:853",
+        "rule-set:mihomo_nameserver_policy_alibaba": "https://dns.alidns.com/dns-query",
         "rule-set:mihomo_nameserver_policy_tencent": "https://doh.pub/dns-query",
         "rule-set:mihomo_nameserver_policy_bilibili": "https://doh.pub/dns-query",
         "rule-set:mihomo_nameserver_policy_xiaomi": "https://doh.pub/dns-query",
@@ -141,8 +140,6 @@ function overwriteNameserverPolicy (params) {
 function overwriteHosts (params) {
     const hosts = {
         "dns.alidns.com": ['223.5.5.5', '223.6.6.6', '2400:3200:baba::1', '2400:3200::1'],
-        "127.0.0.1.sslip.io": "127.0.0.1",
-        "127.atlas.skk.moe": "127.0.0.1",
         "cdn.jsdelivr.net": "cdn.jsdelivr.net.cdn.cloudflare.net"
     };
     params.hosts = hosts;
