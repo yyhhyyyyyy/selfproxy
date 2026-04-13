@@ -1,0 +1,105 @@
+name: Update Mihomo Assets
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Generated asset group to update"
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - config
+          - script
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mihomo-update
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.11"
+  TARGET: ${{ github.event_name == 'workflow_dispatch' && inputs.target || 'all' }}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: true
+
+      - name: Install dependencies
+        run: pdm install --prod
+
+      - name: Run updater
+        working-directory: Mihomo/auto_update_config
+        run: pdm run python -m mihomo_updater --target "${TARGET}"
+
+      - name: Stage generated files
+        id: stage
+        run: |
+          set -euo pipefail
+          git add Mihomo/mihomo_single.yaml Mihomo/mihomo_multi.yaml Mihomo/Extension_Script/script.js
+          if git diff --cached --quiet; then
+            echo "has_changes=false" >> "${GITHUB_OUTPUT}"
+            echo "changed_files=" >> "${GITHUB_OUTPUT}"
+          else
+            echo "has_changes=true" >> "${GITHUB_OUTPUT}"
+            {
+              echo "changed_files<<EOF"
+              git diff --cached --name-only
+              echo "EOF"
+            } >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Commit changes
+        if: steps.stage.outputs.has_changes == 'true'
+        run: |
+          set -euo pipefail
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          case "${TARGET}" in
+            config)
+              commit_message="chore: update mihomo config files"
+              ;;
+            script)
+              commit_message="chore: update mihomo extension script"
+              ;;
+            *)
+              commit_message="chore: update mihomo assets"
+              ;;
+          esac
+
+          git commit -m "${commit_message}"
+          git push
+
+      - name: Write summary
+        run: |
+          {
+            echo "## Mihomo Update"
+            echo ""
+            echo "- Target: \`${TARGET}\`"
+            echo "- Status: ${{ steps.stage.outputs.has_changes == 'true' && 'updated' || 'unchanged' }}"
+            if [[ "${{ steps.stage.outputs.has_changes }}" == "true" ]]; then
+              echo "- Changed files:"
+              while IFS= read -r file; do
+                [[ -n "${file}" ]] && echo "  - \`${file}\`"
+              done <<< "${{ steps.stage.outputs.changed_files }}"
+            fi
+          } >> "${GITHUB_STEP_SUMMARY}"

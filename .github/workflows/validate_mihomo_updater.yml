@@ -1,0 +1,48 @@
+name: Validate Mihomo Updater
+
+on:
+  push:
+    paths:
+      - ".github/workflows/update_mihomo.yml"
+      - ".github/workflows/validate_mihomo_updater.yml"
+      - "Mihomo/auto_update_config/**"
+      - "Mihomo/Extension_Script/script.js"
+      - "Mihomo/mihomo_single.yaml"
+      - "Mihomo/mihomo_multi.yaml"
+      - "pyproject.toml"
+      - "pdm.lock"
+  pull_request:
+    paths:
+      - ".github/workflows/update_mihomo.yml"
+      - ".github/workflows/validate_mihomo_updater.yml"
+      - "Mihomo/auto_update_config/**"
+      - "Mihomo/Extension_Script/script.js"
+      - "Mihomo/mihomo_single.yaml"
+      - "Mihomo/mihomo_multi.yaml"
+      - "pyproject.toml"
+      - "pdm.lock"
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: true
+
+      - name: Install dependencies
+        run: pdm install --prod
+
+      - name: Run unit tests
+        working-directory: Mihomo/auto_update_config
+        run: pdm run python -m unittest discover -s tests

@@ -13,7 +13,161 @@ function main(params) {
     return params;
 }
 
-// 覆写Basic Options
+const GENERATED_FAKE_IP_FILTER = [
+    // GENERATED FAKE-IP-FILTER START
+    "+.m2m",
+    "injections.adguard.org",
+    "local.adguard.org",
+    "+.bogon",
+    "+.local",
+    "+.lan",
+    "+.internal",
+    "+.localdomain",
+    "home.arpa",
+    "dns.msftncsi.com",
+    "*.srv.nintendo.net",
+    "*.stun.playstation.net",
+    "xbox.*.microsoft.com",
+    "*.xboxlive.com",
+    "*.turn.twilio.com",
+    "*.stun.twilio.com",
+    "stun.syncthing.net",
+    "stun.*",
+    "lancache.steamcontent.com",
+    "127.*.*.*.sslip.io",
+    "127-*-*-*.sslip.io",
+    "*.127.*.*.*.sslip.io",
+    "*-127-*-*-*.sslip.io",
+    "127.*.*.*.nip.io",
+    "127-*-*-*.nip.io",
+    "*.127.*.*.*.nip.io",
+    "*-127-*-*-*.nip.io",
+    "127.atlas.skk.moe",
+    // GENERATED FAKE-IP-FILTER END
+];
+
+const GENERATED_NAMESERVER_POLICY = {
+    // GENERATED NAMESERVER-POLICY START
+    "dns.alidns.com": "quic://223.5.5.5:853",
+    "dot.pub": "119.29.29.29",
+    "doh.pub": "119.29.29.29",
+    "dns.pub": "119.29.29.29",
+    "doh.360.cn": "101.198.198.198",
+    "rule-set:mihomo_nameserver_policy_alibaba": "https://dns.alidns.com/dns-query",
+    "rule-set:mihomo_nameserver_policy_tencent": "https://doh.pub/dns-query",
+    "rule-set:mihomo_nameserver_policy_bilibili": "https://doh.pub/dns-query",
+    "rule-set:mihomo_nameserver_policy_xiaomi": "https://doh.pub/dns-query",
+    "rule-set:mihomo_nameserver_policy_bytedance": "180.184.2.2",
+    "rule-set:mihomo_nameserver_policy_baidu": "180.76.76.76",
+    "rule-set:mihomo_nameserver_policy_qihoo360": "https://doh.360.cn/dns-query",
+    "rule-set:mihomo_nameserver_policy_hotspot_captive_portal": "system",
+    "*.m2m": "system",
+    "injections.adguard.org": "system",
+    "local.adguard.org": "system",
+    "*.bogon": "system",
+    "rule-set:mihomo_nameserver_policy_lan_without_real_ip": "system",
+    "rule-set:mihomo_nameserver_policy_lan_with_realip": "system",
+    // GENERATED NAMESERVER-POLICY END
+};
+
+const GENERATED_HOSTS = {
+    // GENERATED HOSTS START
+    "dns.alidns.com": [
+        "223.5.5.5",
+        "223.6.6.6",
+        "2400:3200:baba::1",
+        "2400:3200::1"
+    ],
+    "cdn.jsdelivr.net": "cdn.jsdelivr.net.cdn.cloudflare.net",
+    // GENERATED HOSTS END
+};
+
+const GENERATED_RULE_PROVIDERS = {
+    // GENERATED RULE-PROVIDERS START
+    "mihomo_nameserver_policy_alibaba": {
+        "type": "http",
+        "path": "./sukkaw_ruleset/mihomo_nameserver_policy_alibaba.txt",
+        "url": "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/alibaba.txt",
+        "behavior": "classical",
+        "format": "text",
+        "interval": 43200
+    },
+    "mihomo_nameserver_policy_tencent": {
+        "type": "http",
+        "path": "./sukkaw_ruleset/mihomo_nameserver_policy_tencent.txt",
+        "url": "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/tencent.txt",
+        "behavior": "classical",
+        "format": "text",
+        "interval": 43200
+    },
+    "mihomo_nameserver_policy_bilibili": {
+        "type": "http",
+        "path": "./sukkaw_ruleset/mihomo_nameserver_policy_bilibili.txt",
+        "url": "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/bilibili.txt",
+        "behavior": "classical",
+        "format": "text",
+        "interval": 43200
+    },
+    "mihomo_nameserver_policy_xiaomi": {
+        "type": "http",
+        "path": "./sukkaw_ruleset/mihomo_nameserver_policy_xiaomi.txt",
+        "url": "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/xiaomi.txt",
+        "behavior": "classical",
+        "format": "text",
+        "interval": 43200
+    },
+    "mihomo_nameserver_policy_bytedance": {
+        "type": "http",
+        "path": "./sukkaw_ruleset/mihomo_nameserver_policy_bytedance.txt",
+        "url": "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/bytedance.txt",
+        "behavior": "classical",
+        "format": "text",
+        "interval": 43200
+    },
+    "mihomo_nameserver_policy_baidu": {
+        "type": "http",
+        "path": "./sukkaw_ruleset/mihomo_nameserver_policy_baidu.txt",
+        "url": "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/baidu.txt",
+        "behavior": "classical",
+        "format": "text",
+        "interval": 43200
+    },
+    "mihomo_nameserver_policy_qihoo360": {
+        "type": "http",
+        "path": "./sukkaw_ruleset/mihomo_nameserver_policy_qihoo360.txt",
+        "url": "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/qihoo360.txt",
+        "behavior": "classical",
+        "format": "text",
+        "interval": 43200
+    },
+    "mihomo_nameserver_policy_hotspot_captive_portal": {
+        "type": "http",
+        "path": "./sukkaw_ruleset/mihomo_nameserver_policy_hotspot_captive_portal.txt",
+        "url": "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/hotspot_captive_portal.txt",
+        "behavior": "classical",
+        "format": "text",
+        "interval": 43200
+    },
+    "mihomo_nameserver_policy_lan_without_real_ip": {
+        "type": "http",
+        "path": "./sukkaw_ruleset/mihomo_nameserver_policy_lan_without_real_ip.txt",
+        "url": "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/lan_without_real_ip.txt",
+        "behavior": "classical",
+        "format": "text",
+        "interval": 43200
+    },
+    "mihomo_nameserver_policy_lan_with_realip": {
+        "type": "http",
+        "path": "./sukkaw_ruleset/mihomo_nameserver_policy_lan_with_realip.txt",
+        "url": "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/lan_with_realip.txt",
+        "behavior": "classical",
+        "format": "text",
+        "interval": 43200
+    },
+    // GENERATED RULE-PROVIDERS END
+};
+
+// Overwrite basic options
 function overwriteBasicOptions(params) {
     const otherOptions = {
         "mixed-port": 7897,
@@ -51,7 +205,7 @@ function overwriteBasicOptions(params) {
     });
 }
 
-// 覆写DNS
+// Overwrite DNS
 function overwriteDns(params) {
     const dnsList = [
         "https://223.5.5.5/dns-query",
@@ -75,74 +229,19 @@ function overwriteDns(params) {
     params.dns = { ...dnsOptions };
 }
 
-// 覆写DNS.Fake IP Filter
-function overwriteFakeIpFilter (params) {
-    const fakeIpFilter = [
-        "+.m2m",
-        "injections.adguard.org",
-        "local.adguard.org",
-        "+.bogon",
-        "+.local",
-        "+.lan",
-        "+.internal",
-        "+.localdomain",
-        "home.arpa",
-        "dns.msftncsi.com",
-        "*.srv.nintendo.net",
-        "*.stun.playstation.net",
-        "xbox.*.microsoft.com",
-        "*.xboxlive.com",
-        "*.turn.twilio.com",
-        "*.stun.twilio.com",
-        "stun.syncthing.net",
-        "stun.*",
-        "lancache.steamcontent.com",
-        "127.*.*.*.sslip.io",
-        "127-*-*-*.sslip.io",
-        "*.127.*.*.*.sslip.io",
-        "*-127-*-*-*.sslip.io",
-        "127.*.*.*.nip.io",
-        "127-*-*-*.nip.io",
-        "*.127.*.*.*.nip.io",
-        "*-127-*-*-*.nip.io",
-        "127.atlas.skk.moe"
-    ];
-    params.dns["fake-ip-filter"] = fakeIpFilter;
+// Overwrite DNS fake-ip-filter
+function overwriteFakeIpFilter(params) {
+    params.dns["fake-ip-filter"] = GENERATED_FAKE_IP_FILTER;
 }
 
-// 覆写DNS.Nameserver Policy
-function overwriteNameserverPolicy (params) {
-    const nameserverPolicy = {
-        "dns.alidns.com": "quic://223.5.5.5:853",
-        "dot.pub": "119.29.29.29",
-        "doh.pub": "119.29.29.29",
-        "dns.pub": "119.29.29.29",
-        "doh.360.cn": "101.198.198.198",
-        "rule-set:mihomo_nameserver_policy_alibaba": "https://dns.alidns.com/dns-query",
-        "rule-set:mihomo_nameserver_policy_tencent": "https://doh.pub/dns-query",
-        "rule-set:mihomo_nameserver_policy_bilibili": "https://doh.pub/dns-query",
-        "rule-set:mihomo_nameserver_policy_xiaomi": "https://doh.pub/dns-query",
-        "rule-set:mihomo_nameserver_policy_bytedance": "180.184.2.2",
-        "rule-set:mihomo_nameserver_policy_baidu": "180.76.76.76",
-        "rule-set:mihomo_nameserver_policy_qihoo360": "https://doh.360.cn/dns-query",
-        "rule-set:mihomo_nameserver_policy_hotspot_captive_portal": "system",
-        "*.m2m": "system",
-        "injections.adguard.org": "system",
-        "local.adguard.org": "system",
-        "*.bogon": "system",
-        "rule-set:mihomo_nameserver_policy_lan_without_real_ip": "system",
-        "rule-set:mihomo_nameserver_policy_lan_with_realip": "system"
-    };
-    params.dns["nameserver-policy"] = nameserverPolicy;
+// Overwrite DNS nameserver-policy
+function overwriteNameserverPolicy(params) {
+    params.dns["nameserver-policy"] = GENERATED_NAMESERVER_POLICY;
 }
 
-// 覆写hosts
-function overwriteHosts (params) {
-    const hosts = {
-        "dns.alidns.com": ['223.5.5.5', '223.6.6.6', '2400:3200:baba::1', '2400:3200::1'],
-        "cdn.jsdelivr.net": "cdn.jsdelivr.net.cdn.cloudflare.net"
-    };
-    params.hosts = hosts;
+// Overwrite hosts
+function overwriteHosts(params) {
+    params.hosts = GENERATED_HOSTS;
 }
 
 // 覆写Tunnel
@@ -603,93 +702,9 @@ function overwriteRules(params) {
             proxy: "🎯 节点选择"
         }
     };
-    // 来自上游的 rule-providers
-    const overwriteRuleProviders = {
-        mihomo_nameserver_policy_alibaba: {
-            type: "http",
-            path: "./sukkaw_ruleset/mihomo_nameserver_policy_alibaba.txt",
-            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/alibaba.txt",
-            behavior: "classical",
-            format: "text",
-            interval: 43200
-        },
-        mihomo_nameserver_policy_tencent: {
-            type: "http",
-            path: "./sukkaw_ruleset/mihomo_nameserver_policy_tencent.txt",
-            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/tencent.txt",
-            behavior: "classical",
-            format: "text",
-            interval: 43200
-        },
-        mihomo_nameserver_policy_bilibili: {
-            type: "http",
-            path: "./sukkaw_ruleset/mihomo_nameserver_policy_bilibili.txt",
-            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/bilibili.txt",
-            behavior: "classical",
-            format: "text",
-            interval: 43200
-        },
-        mihomo_nameserver_policy_xiaomi: {
-            type: "http",
-            path: "./sukkaw_ruleset/mihomo_nameserver_policy_xiaomi.txt",
-            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/xiaomi.txt",
-            behavior: "classical",
-            format: "text",
-            interval: 43200
-        },
-        mihomo_nameserver_policy_bytedance: {
-            type: "http",
-            path: "./sukkaw_ruleset/mihomo_nameserver_policy_bytedance.txt",
-            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/bytedance.txt",
-            behavior: "classical",
-            format: "text",
-            interval: 43200
-        },
-        mihomo_nameserver_policy_baidu: {
-            type: "http",
-            path: "./sukkaw_ruleset/mihomo_nameserver_policy_baidu.txt",
-            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/baidu.txt",
-            behavior: "classical",
-            format: "text",
-            interval: 43200
-        },
-        mihomo_nameserver_policy_qihoo360: {
-            type: "http",
-            path: "./sukkaw_ruleset/mihomo_nameserver_policy_qihoo360.txt",
-            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/qihoo360.txt",
-            behavior: "classical",
-            format: "text",
-            interval: 43200
-        },
-        mihomo_nameserver_policy_hotspot_captive_portal: {
-            type: "http",
-            path: "./sukkaw_ruleset/mihomo_nameserver_policy_hotspot_captive_portal.txt",
-            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/hotspot_captive_portal.txt",
-            behavior: "classical",
-            format: "text",
-            interval: 43200
-        },
-        mihomo_nameserver_policy_lan_without_real_ip: {
-            type: "http",
-            path: "./sukkaw_ruleset/mihomo_nameserver_policy_lan_without_real_ip.txt",
-            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/lan_without_real_ip.txt",
-            behavior: "classical",
-            format: "text",
-            interval: 43200
-        },
-        mihomo_nameserver_policy_lan_with_realip: {
-            type: "http",
-            path: "./sukkaw_ruleset/mihomo_nameserver_policy_lan_with_realip.txt",
-            url: "https://ruleset.skk.moe/Internal/mihomo_nameserver_policy/lan_with_realip.txt",
-            behavior: "classical",
-            format: "text",
-            interval: 43200
-        }
-    };
-
     const ruleProviders = {
         ...baseRuleProviders,
-        ...overwriteRuleProviders
+        ...GENERATED_RULE_PROVIDERS
     };
 
     params["rule-providers"] = ruleProviders;

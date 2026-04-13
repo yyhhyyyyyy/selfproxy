@@ -1,0 +1,32 @@
+from pathlib import Path
+
+FAKE_IP_FILTER_URL = "https://ruleset.skk.moe/Internal/clash_fake_ip_filter.yaml"
+NAMESERVER_POLICY_URL = (
+    "https://ruleset.skk.moe/Internal/clash_nameserver_policy.yaml"
+)
+REQUEST_TIMEOUT_SECONDS = 20
+REQUEST_RETRY_TOTAL = 3
+USER_AGENT = "selfproxy-mihomo-updater/1.0"
+
+PACKAGE_DIR = Path(__file__).resolve().parent
+AUTO_UPDATE_DIR = PACKAGE_DIR.parent
+MIHOMO_DIR = AUTO_UPDATE_DIR.parent
+REPO_ROOT = MIHOMO_DIR.parent
+
+CONFIG_PATHS = (
+    MIHOMO_DIR / "mihomo_single.yaml",
+    MIHOMO_DIR / "mihomo_multi.yaml",
+)
+SCRIPT_PATH = MIHOMO_DIR / "Extension_Script" / "script.js"
+
+YAML_FAKE_IP_FILTER_START = "# fake-ip-filter start"
+YAML_FAKE_IP_FILTER_END = "# fake-ip-filter end"
+
+JS_FAKE_IP_FILTER_START = "// GENERATED FAKE-IP-FILTER START"
+JS_FAKE_IP_FILTER_END = "// GENERATED FAKE-IP-FILTER END"
+JS_NAMESERVER_POLICY_START = "// GENERATED NAMESERVER-POLICY START"
+JS_NAMESERVER_POLICY_END = "// GENERATED NAMESERVER-POLICY END"
+JS_HOSTS_START = "// GENERATED HOSTS START"
+JS_HOSTS_END = "// GENERATED HOSTS END"
+JS_RULE_PROVIDERS_START = "// GENERATED RULE-PROVIDERS START"
+JS_RULE_PROVIDERS_END = "// GENERATED RULE-PROVIDERS END"
