@@ -115,7 +115,7 @@ proxy-providers:
 # 按地区筛选
 FilterHK: &FilterHK '(🇭🇰|香港|[Hh][Kk]|Hong\s*Kong)'
 FilterTW: &FilterTW '(🇹🇼|台[湾灣]|[Tt][Ww]|Taiwan)'
-FilterUS: &FilterUS '(🇺🇸|美[国國]|America|United\s*States|[Uu][Ss])'
+FilterUS: &FilterUS '(🇺🇸|美国|United\s*States|\b[Uu][Ss](\b|[_\d]))'
 FilterJP: &FilterJP '(🇯🇵|日本|东京|大阪|[Jj][Pp]|Japan)'
 FilterSG: &FilterSG '(🇸🇬|新加坡|狮城|[Ss][Gg]|Singapore)'
 

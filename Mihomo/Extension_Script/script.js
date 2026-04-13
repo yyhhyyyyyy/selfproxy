@@ -174,7 +174,7 @@ function overwriteProxyGroups(params) {
         SG: "(新加坡|狮城|SG|Singapore|🇸🇬)",
         JP: "(日本|JP|Japan|🇯🇵)",
         KR: "(韩国|韓|KR|Korea|🇰🇷)",
-        US: "(美国|US|United States|America|🇺🇸)",
+        US: "(美国|🇺🇸|United\\s*States|\\bUS(\\b|[_\\d]))",
         UK: "(英国|UK|United Kingdom|🇬🇧)",
         FR: "(法国|FR|France|🇫🇷)",
         DE: "(德国|DE|Germany|🇩🇪)"
