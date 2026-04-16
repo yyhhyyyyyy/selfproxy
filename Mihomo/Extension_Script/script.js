@@ -34,15 +34,6 @@ const GENERATED_FAKE_IP_FILTER = [
     "stun.syncthing.net",
     "stun.*",
     "lancache.steamcontent.com",
-    "127.*.*.*.sslip.io",
-    "127-*-*-*.sslip.io",
-    "*.127.*.*.*.sslip.io",
-    "*-127-*-*-*.sslip.io",
-    "127.*.*.*.nip.io",
-    "127-*-*-*.nip.io",
-    "*.127.*.*.*.nip.io",
-    "*-127-*-*-*.nip.io",
-    "127.atlas.skk.moe",
     // GENERATED FAKE-IP-FILTER END
 ];
 
